@@ -1,0 +1,14 @@
+{
+  "resourceName": "s3aaronkringsmusicstorage5a99e8b2",
+  "bucketName": "aaronkringsmusic-storage-5a99e8b2",
+  "policyUUID": "fa7e96ae",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ",
+    "CREATE_AND_UPDATE"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ"
+  ]
+}
