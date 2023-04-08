@@ -1,22 +1,17 @@
-import logo from './logo.svg';
+import aaronbackground from './aaronbackground.mp4';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <video autoPlay muted loop id="myVideo">
+          <source src={aaronbackground} type="video/mp4"/>
+        </video>
+        <div className='intro'>
+          <p>Aaron Krings is a jazz artist, currently featured in the play Million Dollar Quartet.</p>
+          <p>Opening April 20th, Wick Theater, Boca Raton, FL</p> </div>
+        <div className='signup'>Sign up for classes now</div>
       </header>
     </div>
   );
