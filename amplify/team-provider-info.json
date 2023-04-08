@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplify62a0cacf0b354-staging-03307-authRole",
+      "UnauthRoleArn": "arn:aws:iam::805158296139:role/amplify-amplify62a0cacf0b354-staging-03307-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::805158296139:role/amplify-amplify62a0cacf0b354-staging-03307-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-amplify62a0cacf0b354-staging-03307-deployment",
+      "UnauthRoleName": "amplify-amplify62a0cacf0b354-staging-03307-unauthRole",
+      "StackName": "amplify-amplify62a0cacf0b354-staging-03307",
+      "StackId": "arn:aws:cloudformation:us-east-1:805158296139:stack/amplify-amplify62a0cacf0b354-staging-03307/eec4a150-d5a4-11ed-be80-0a0646a192ad",
+      "AmplifyAppId": "de48e3ci9r2eh"
+    },
+    "categories": {
+      "auth": {
+        "aaronkringsmusic": {}
+      }
+    }
+  }
+}
