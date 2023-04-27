@@ -21,7 +21,7 @@
       "function": {
         "emailhandler": {
           "deploymentBucketName": "amplify-amplify62a0cacf0b354-staging-03307-deployment",
-          "s3Key": "amplify-builds/emailhandler-4a6c316e4a7144614634-build.zip"
+          "s3Key": "amplify-builds/emailhandler-6949616d68454d527154-build.zip"
         }
       },
       "api": {
