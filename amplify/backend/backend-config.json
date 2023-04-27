@@ -60,6 +60,51 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "handleemail": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
+          ],
+          "category": "api",
+          "resourceName": "aaronkringsmusic"
+        },
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "aaronkringsmusic"
+        },
+        {
+          "attributes": [
+            "BucketName"
+          ],
+          "category": "storage",
+          "resourceName": "s3aaronkringsmusicstorage5a99e8b2"
+        },
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput",
+            "GraphQLAPIKeyOutput"
+          ],
+          "category": "api",
+          "resourceName": "aaronkringsmusic"
+        },
+        {
+          "attributes": [
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "emailhandler"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "parameters": {
@@ -76,6 +121,22 @@
         {
           "category": "function",
           "resourceName": "emailhandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_handleemail_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "handleemail"
+        }
+      ]
+    },
+    "AMPLIFY_function_handleemail_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "handleemail"
         }
       ]
     }
