@@ -5,9 +5,8 @@ import './Bio.css';
 const ContactForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Handle form submission logic here
+    console.log("you submitted")
   };
-
   return (
     <Card className="contact-form-card" id="contact">
       <CardContent>
@@ -39,7 +38,7 @@ const ContactForm = () => {
             margin="normal"
             required
           />
-          <Button type="submit" variant="contained" color="primary">
+          <Button type="submit" variant="contained" color="primary" onSubmit={handleSubmit}>
             Submit
           </Button>
         </form>
