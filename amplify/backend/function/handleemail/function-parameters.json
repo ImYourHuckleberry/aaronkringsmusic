@@ -19,15 +19,8 @@
     "api": {
       "aaronkringsmusic": [
         "Query",
+        "Mutation",
         "Subscription"
-      ]
-    },
-    "function": {
-      "emailhandler": [
-        "create",
-        "read",
-        "update",
-        "delete"
       ]
     }
   },

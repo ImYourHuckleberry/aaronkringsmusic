@@ -16,14 +16,6 @@
     "s3Key": {
       "Type": "String"
     },
-    "apiaaronkringsmusicGraphQLAPIIdOutput": {
-      "Type": "String",
-      "Default": "apiaaronkringsmusicGraphQLAPIIdOutput"
-    },
-    "apiaaronkringsmusicGraphQLAPIEndpointOutput": {
-      "Type": "String",
-      "Default": "apiaaronkringsmusicGraphQLAPIEndpointOutput"
-    },
     "authaaronkringsmusicUserPoolId": {
       "Type": "String",
       "Default": "authaaronkringsmusicUserPoolId"
@@ -32,13 +24,17 @@
       "Type": "String",
       "Default": "storages3aaronkringsmusicstorage5a99e8b2BucketName"
     },
+    "apiaaronkringsmusicGraphQLAPIIdOutput": {
+      "Type": "String",
+      "Default": "apiaaronkringsmusicGraphQLAPIIdOutput"
+    },
+    "apiaaronkringsmusicGraphQLAPIEndpointOutput": {
+      "Type": "String",
+      "Default": "apiaaronkringsmusicGraphQLAPIEndpointOutput"
+    },
     "apiaaronkringsmusicGraphQLAPIKeyOutput": {
       "Type": "String",
       "Default": "apiaaronkringsmusicGraphQLAPIKeyOutput"
-    },
-    "functionemailhandlerName": {
-      "Type": "String",
-      "Default": "functionemailhandlerName"
     }
   },
   "Conditions": {
@@ -71,12 +67,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "handleemail",
+            "handleEmail",
             {
               "Fn::Join": [
                 "",
                 [
-                  "handleemail",
+                  "handleEmail",
                   "-",
                   {
                     "Ref": "env"
@@ -108,9 +104,6 @@
             },
             "API_AARONKRINGSMUSIC_GRAPHQLAPIKEYOUTPUT": {
               "Ref": "apiaaronkringsmusicGraphQLAPIKeyOutput"
-            },
-            "FUNCTION_EMAILHANDLER_NAME": {
-              "Ref": "functionemailhandlerName"
             }
           }
         },
@@ -131,12 +124,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "aaronkringsmusicLambdaRole546062a8",
+            "aaronkringsmusicLambdaRole7bc44ba6",
             {
               "Fn::Join": [
                 "",
                 [
-                  "aaronkringsmusicLambdaRole546062a8",
+                  "aaronkringsmusicLambdaRole7bc44ba6",
                   "-",
                   {
                     "Ref": "env"
@@ -410,31 +403,15 @@
                       {
                         "Ref": "apiaaronkringsmusicGraphQLAPIIdOutput"
                       },
-                      "/types/Subscription/*"
+                      "/types/Mutation/*"
                     ]
                   ]
-                }
-              ]
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
-                "lambda:Create*",
-                "lambda:Put*",
-                "lambda:Add*",
-                "lambda:Get*",
-                "lambda:List*",
-                "lambda:Invoke*",
-                "lambda:Update*",
-                "lambda:Delete*",
-                "lambda:Remove*"
-              ],
-              "Resource": [
+                },
                 {
                   "Fn::Join": [
                     "",
                     [
-                      "arn:aws:lambda:",
+                      "arn:aws:appsync:",
                       {
                         "Ref": "AWS::Region"
                       },
@@ -442,10 +419,11 @@
                       {
                         "Ref": "AWS::AccountId"
                       },
-                      ":function:",
+                      ":apis/",
                       {
-                        "Ref": "functionemailhandlerName"
-                      }
+                        "Ref": "apiaaronkringsmusicGraphQLAPIIdOutput"
+                      },
+                      "/types/Subscription/*"
                     ]
                   ]
                 }
@@ -453,62 +431,6 @@
             }
           ]
         }
-      }
-    },
-    "LambdaTriggerPolicyContact": {
-      "DependsOn": [
-        "LambdaExecutionRole"
-      ],
-      "Type": "AWS::IAM::Policy",
-      "Properties": {
-        "PolicyName": "amplify-lambda-execution-policy-Contact",
-        "Roles": [
-          {
-            "Ref": "LambdaExecutionRole"
-          }
-        ],
-        "PolicyDocument": {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Effect": "Allow",
-              "Action": [
-                "dynamodb:DescribeStream",
-                "dynamodb:GetRecords",
-                "dynamodb:GetShardIterator",
-                "dynamodb:ListStreams"
-              ],
-              "Resource": {
-                "Fn::ImportValue": {
-                  "Fn::Sub": "${apiaaronkringsmusicGraphQLAPIIdOutput}:GetAtt:ContactTable:StreamArn"
-                }
-              }
-            }
-          ]
-        }
-      }
-    },
-    "LambdaEventSourceMappingContact": {
-      "Type": "AWS::Lambda::EventSourceMapping",
-      "DependsOn": [
-        "LambdaTriggerPolicyContact",
-        "LambdaExecutionRole"
-      ],
-      "Properties": {
-        "BatchSize": 100,
-        "Enabled": true,
-        "EventSourceArn": {
-          "Fn::ImportValue": {
-            "Fn::Sub": "${apiaaronkringsmusicGraphQLAPIIdOutput}:GetAtt:ContactTable:StreamArn"
-          }
-        },
-        "FunctionName": {
-          "Fn::GetAtt": [
-            "LambdaFunction",
-            "Arn"
-          ]
-        },
-        "StartingPosition": "LATEST"
       }
     }
   },

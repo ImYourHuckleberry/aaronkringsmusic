@@ -1,23 +1,15 @@
-/* Amplify Params - DO NOT EDIT
-	API_AARONKRINGSMUSIC_GRAPHQLAPIENDPOINTOUTPUT
-	API_AARONKRINGSMUSIC_GRAPHQLAPIIDOUTPUT
-	API_AARONKRINGSMUSIC_GRAPHQLAPIKEYOUTPUT
-	AUTH_AARONKRINGSMUSIC_USERPOOLID
-	ENV
-	FUNCTION_EMAILHANDLER_NAME
-	REGION
-	STORAGE_S3AARONKRINGSMUSICSTORAGE5A99E8B2_BUCKETNAME
-Amplify Params - DO NOT EDIT */
+const awsServerlessExpress = require('aws-serverless-express');
+const app = require('./app');
+
+/**
+ * @type {import('http').Server}
+ */
+const server = awsServerlessExpress.createServer(app);
 
 /**
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
-exports.handler = event => {
+exports.handler = (event, context) => {
   console.log(`EVENT: ${JSON.stringify(event)}`);
-  for (const record of event.Records) {
-    console.log(record.eventID);
-    console.log(record.eventName);
-    console.log('DynamoDB Record: %j', record.dynamodb);
-  }
-  return Promise.resolve('Successfully processed DynamoDB record');
+  return awsServerlessExpress.proxy(server, event, context, 'PROMISE').promise;
 };

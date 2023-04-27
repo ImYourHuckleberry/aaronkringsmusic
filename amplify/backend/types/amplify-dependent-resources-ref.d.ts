@@ -18,7 +18,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "function": {
-    "handleemail": {
+    "handleEmail": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
       "LambdaExecutionRoleArn": "string",

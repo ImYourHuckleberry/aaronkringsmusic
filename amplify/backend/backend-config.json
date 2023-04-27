@@ -56,22 +56,9 @@
     }
   },
   "function": {
-    "emailhandler": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "handleemail": {
+    "handleEmail": {
       "build": true,
       "dependsOn": [
-        {
-          "attributes": [
-            "GraphQLAPIIdOutput",
-            "GraphQLAPIEndpointOutput"
-          ],
-          "category": "api",
-          "resourceName": "aaronkringsmusic"
-        },
         {
           "attributes": [
             "UserPoolId"
@@ -94,13 +81,6 @@
           ],
           "category": "api",
           "resourceName": "aaronkringsmusic"
-        },
-        {
-          "attributes": [
-            "Name"
-          ],
-          "category": "function",
-          "resourceName": "emailhandler"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -108,35 +88,19 @@
     }
   },
   "parameters": {
-    "AMPLIFY_function_emailhandler_deploymentBucketName": {
+    "AMPLIFY_function_handleEmail_deploymentBucketName": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "emailhandler"
+          "resourceName": "handleEmail"
         }
       ]
     },
-    "AMPLIFY_function_emailhandler_s3Key": {
+    "AMPLIFY_function_handleEmail_s3Key": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "emailhandler"
-        }
-      ]
-    },
-    "AMPLIFY_function_handleemail_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "handleemail"
-        }
-      ]
-    },
-    "AMPLIFY_function_handleemail_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "handleemail"
+          "resourceName": "handleEmail"
         }
       ]
     }
