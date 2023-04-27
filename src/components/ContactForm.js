@@ -22,7 +22,7 @@ const ContactForm = () => {
 
     try {
       // Invoke the Lambda function
-      const response = await API.post('handler', 'https://khnmm32bwpktpbo5wckujv7buu0cykti.lambda-url.us-east-1.on.aws/', { body: payload });
+      const response = await API.post('emailhandler', 'https://lqfxsdcumovtz7bpaa3r7dztti0cindr.lambda-url.us-east-1.on.aws/', { body: payload });
       console.log(response)
       // Handle the response
       // ...

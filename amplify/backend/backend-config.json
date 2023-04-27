@@ -58,9 +58,26 @@
   "function": {
     "emailhandler": {
       "build": true,
-      "dependsOn": [],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_emailhandler_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "emailhandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_emailhandler_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "emailhandler"
+        }
+      ]
     }
   },
   "storage": {

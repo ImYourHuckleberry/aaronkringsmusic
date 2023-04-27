@@ -19,7 +19,13 @@
         "s3aaronkringsmusicstorage5a99e8b2": {}
       },
       "function": {
-        "emailhandler": {}
+        "emailhandler": {
+          "deploymentBucketName": "amplify-amplify62a0cacf0b354-staging-03307-deployment",
+          "s3Key": "amplify-builds/emailhandler-313752785742736a5349-build.zip"
+        }
+      },
+      "api": {
+        "aaronkringsmusic": {}
       }
     }
   }
