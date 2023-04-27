@@ -1,19 +1,23 @@
-
 import './App.css';
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import BottomNav from './components/BottomNav';
+import Bio from './components/Bio';
 
 function App() {
-
   return (
     <div className="App">
       <header className="App-header">
-        <video autoPlay muted loop id="myVideo">
-          <source src="https://aaronkringsmusic-storage-5a99e8b203307-staging.s3.amazonaws.com/aaronbackground.mp4" type="video/mp4"/>
-        </video>
-        <div className='intro'>
-          <p>Aaron Krings is a jazz artist, currently featured in the play Million Dollar Quartet.</p>
-          <p>Opening April 20th, Wick Theater, Boca Raton, FL</p> </div>
-        <div className='signup'>Sign up for classes now</div>
+        <div className="video-container">
+          <video autoPlay muted loop id="myVideo">
+            <source src="https://aaronkringsmusic-storage-5a99e8b203307-staging.s3.amazonaws.com/aaronbackground.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Bio />} />
+          </Routes>
+          <BottomNav />
+        </Router>
       </header>
     </div>
   );

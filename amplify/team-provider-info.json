@@ -14,6 +14,9 @@
     "categories": {
       "auth": {
         "aaronkringsmusic": {}
+      },
+      "storage": {
+        "s3aaronkringsmusicstorage5a99e8b2": {}
       }
     }
   }
