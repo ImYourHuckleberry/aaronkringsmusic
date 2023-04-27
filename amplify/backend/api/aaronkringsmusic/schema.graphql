@@ -1,0 +1,13 @@
+enum LessonTypes {
+  IN_PERSON
+  ONLINE
+}
+
+type Contact @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Name: String!
+  Email: AWSEmail!
+  Phone: AWSPhone
+  LessonType: LessonTypes!
+  Message: String!
+}
