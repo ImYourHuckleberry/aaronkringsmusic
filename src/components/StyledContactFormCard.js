@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import { Card, CardContent, styled } from '@mui/material';
 import ContactCreateForm from '../ui-components/ContactCreateForm';
 import './customContactFormStyles.css';
@@ -13,8 +14,11 @@ const StyledCard = styled(Card)(({ theme }) => ({
   backgroundColor: '#fff',
   height: 'fit-content'
 }));
+  
+const StyledContactFormCard = () => {
+  const [formKey, setFormKey] = React.useState(0);
 
-const handleSubmit = async (event) => {
+  const handleSubmit = async (event) => {
     console.log("my handlesubmit is being hit")
 const Name = event.Name
 const Email = event.Email
@@ -41,16 +45,14 @@ const Message = event.Message
     } catch (error) {
       console.error('Error sending email:', error);
     }
+    setFormKey((prevKey) => prevKey + 1);
   };
-
-  
-const StyledContactFormCard = () => {
   return (
     <StyledCard>
-      <CardContent>
+      <CardContent id="contact">
         <h1>Contact me for lessons or questions</h1>
         <div className="myFormContainer"> {/* Apply the custom styles */}
-          <ContactCreateForm onSubmit={handleSubmit} />
+          <ContactCreateForm key={formKey} onSubmit={handleSubmit} />
         </div>
       </CardContent>
     </StyledCard>
