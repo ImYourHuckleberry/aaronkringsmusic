@@ -29,7 +29,9 @@ CustomStyles.css
 
 }
 
-
+.amplify-select__icon-wrapper {
+  display: none;
+}
 /* Override styles for select inputs */
 .myFormContainer select {
   padding: 10px;
