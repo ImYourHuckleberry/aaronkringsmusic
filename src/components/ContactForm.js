@@ -7,29 +7,6 @@ const ContactForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
-
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-
-  //   // Create the request payload
-  //   const payload = {
-  //     name: name,
-  //     email: email,
-  //     message: message,
-  //   };
-
-  //   console.log(payload);
-
-  //   try {
-  //     // Invoke the Lambda function
-  //     const response = await API.post('handleEmail', 'https://lqfxsdcumovtz7bpaa3r7dztti0cindr.lambda-url.us-east-1.on.aws/', { body: payload });
-  //     console.log(response)
-  //     // Handle the response
-  //     // ...
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // };
   const handleSubmit = async (event) => {
     event.preventDefault();
 
