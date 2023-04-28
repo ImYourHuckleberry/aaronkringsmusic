@@ -22,9 +22,9 @@
         "aaronkringsmusic": {}
       },
       "function": {
-        "handleEmail": {
+        "recieveemail": {
           "deploymentBucketName": "amplify-amplify62a0cacf0b354-staging-03307-deployment",
-          "s3Key": "amplify-builds/handleEmail-5256736a636f78435142-build.zip"
+          "s3Key": "amplify-builds/recieveemail-624c377072564459704d-build.zip"
         }
       }
     }

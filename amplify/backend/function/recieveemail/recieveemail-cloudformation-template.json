@@ -67,12 +67,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "handleEmail",
+            "recieveemail",
             {
               "Fn::Join": [
                 "",
                 [
-                  "handleEmail",
+                  "recieveemail",
                   "-",
                   {
                     "Ref": "env"
@@ -124,12 +124,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "aaronkringsmusicLambdaRole7bc44ba6",
+            "aaronkringsmusicLambdaRole08e1a35d",
             {
               "Fn::Join": [
                 "",
                 [
-                  "aaronkringsmusicLambdaRole7bc44ba6",
+                  "aaronkringsmusicLambdaRole08e1a35d",
                   "-",
                   {
                     "Ref": "env"

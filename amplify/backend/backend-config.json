@@ -56,7 +56,7 @@
     }
   },
   "function": {
-    "handleEmail": {
+    "recieveemail": {
       "build": true,
       "dependsOn": [
         {
@@ -88,19 +88,19 @@
     }
   },
   "parameters": {
-    "AMPLIFY_function_handleEmail_deploymentBucketName": {
+    "AMPLIFY_function_recieveemail_deploymentBucketName": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "handleEmail"
+          "resourceName": "recieveemail"
         }
       ]
     },
-    "AMPLIFY_function_handleEmail_s3Key": {
+    "AMPLIFY_function_recieveemail_s3Key": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "handleEmail"
+          "resourceName": "recieveemail"
         }
       ]
     }
