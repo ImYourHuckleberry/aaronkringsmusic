@@ -33,7 +33,7 @@ exports.handler = async (event, context) => {
         Data: 'Contact Form Submission'
       }
     },
-    Source: 'sender@example.com' // Replace with the verified email address from AWS SES
+    Source: 'w.tyler.krings@gmail.com' // Replace with the verified email address from AWS SES
   };
 
   try {

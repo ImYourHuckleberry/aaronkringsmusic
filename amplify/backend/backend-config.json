@@ -87,24 +87,6 @@
       "service": "Lambda"
     }
   },
-  "parameters": {
-    "AMPLIFY_function_recieveemail_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "recieveemail"
-        }
-      ]
-    },
-    "AMPLIFY_function_recieveemail_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "recieveemail"
-        }
-      ]
-    }
-  },
   "storage": {
     "s3aaronkringsmusicstorage5a99e8b2": {
       "dependsOn": [],
