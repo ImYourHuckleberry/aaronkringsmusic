@@ -3,7 +3,7 @@ enum LessonTypes {
   ONLINE
 }
 
-type Contact @model @auth(rules: [{allow: public}]) {
+type Contact @model @auth(rules: [{allow: public, provider: apiKey, operations: [read, create, update, delete]}]) {
   id: ID!
   Name: String!
   Email: AWSEmail!
@@ -11,3 +11,4 @@ type Contact @model @auth(rules: [{allow: public}]) {
   LessonType: LessonTypes!
   Message: String!
 }
+ 

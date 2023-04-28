@@ -56,28 +56,13 @@
     }
   },
   "function": {
-    "recieveemail": {
+    "formsumbissionemail": {
       "build": true,
       "dependsOn": [
         {
           "attributes": [
-            "UserPoolId"
-          ],
-          "category": "auth",
-          "resourceName": "aaronkringsmusic"
-        },
-        {
-          "attributes": [
-            "BucketName"
-          ],
-          "category": "storage",
-          "resourceName": "s3aaronkringsmusicstorage5a99e8b2"
-        },
-        {
-          "attributes": [
             "GraphQLAPIIdOutput",
-            "GraphQLAPIEndpointOutput",
-            "GraphQLAPIKeyOutput"
+            "GraphQLAPIEndpointOutput"
           ],
           "category": "api",
           "resourceName": "aaronkringsmusic"
@@ -85,6 +70,32 @@
       ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_formsumbissionemail_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "formsumbissionemail"
+        }
+      ]
+    },
+    "AMPLIFY_function_formsumbissionemail_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "formsumbissionemail"
+        }
+      ]
+    },
+    "AMPLIFY_function_formsumbissionemail_sesEmail": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "formsumbissionemail"
+        }
+      ]
     }
   },
   "storage": {

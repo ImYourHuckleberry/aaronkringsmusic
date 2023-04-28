@@ -2,6 +2,9 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import BottomNav from './components/BottomNav';
 import Bio from './components/Bio';
+import Amplify from '@aws-amplify/core'
+import config from '../src/aws-exports'
+Amplify.configure(config)
 
 function App() {
   return (

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Card, CardContent } from '@mui/material';
 import './Bio.css';
-import ContactForm from './ContactForm'
+import ContactCreateForm from '../ui-components/ContactCreateForm';
+import StyledContactFormCard from './StyledContactFormCard';
 
 const Bio = () => {
   return (
@@ -31,7 +32,8 @@ const Bio = () => {
           </p>
         </CardContent>
       </Card>
-      <ContactForm />
+      <StyledContactFormCard><ContactCreateForm/></StyledContactFormCard>
+      
     </div>
   );
 };
