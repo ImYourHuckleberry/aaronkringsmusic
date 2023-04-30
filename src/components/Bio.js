@@ -1,12 +1,52 @@
 import React from 'react';
-import { Card, CardContent } from '@mui/material';
+import { Card, CardContent, Button} from '@mui/material';
 import './Bio.css';
 import ContactCreateForm from '../ui-components/ContactCreateForm';
 import StyledContactFormCard from './StyledContactFormCard';
 
 const Bio = () => {
+  const handleButtonShow=()=>{
+    window.open(
+      'https://thewicktheatre.thundertix.com/events/197583',
+      '_blank' // <- This is what makes it open in a new window.
+    );
+  }
+  const handleButtonAlbum=()=>{
+    window.open(
+      'https://jonolejnik.bandcamp.com/album/now-hear-this',
+      '_blank' // <- This is what makes it open in a new window.
+    );
+  }
+
+
   return (
     <div className="bio-container">
+      <div className='current-event'>
+      <h1 className='name-title'>Aaron Krings</h1>
+
+      
+      
+      <h1>New Album: <em>NOW HEAR THIS!</em></h1>
+    <h1>Available Now!</h1>
+    <div>
+    <img src="https://aaronkringsmusic-storage-5a99e8b203307-staging.s3.amazonaws.com/nowhearthis.jpg" alt = "now hear this"></img>
+    </div>
+    <Button variant="contained" color="success" onClick={handleButtonAlbum}>
+          Buy
+        </Button>
+      </div>
+      <Card className="bio-card" id="current-gig">
+        <CardContent>
+        <h2>Now Playing in <em>The Million Dollar Quartet</em></h2>
+        <h3>April 20 - May 14</h3>
+        <div>
+        <img src="https://aaronkringsmusic-storage-5a99e8b203307-staging.s3.amazonaws.com/MDQ.png" alt="million dollar quartet"></img>
+        </div>
+        <Button variant="contained" color="success" onClick={handleButtonShow}>
+          Get Tickets
+        </Button>
+        </CardContent>
+      </Card>
       <Card className="bio-card" id="bio">
         <CardContent>
           <h2>Aaron Krings</h2>
@@ -32,8 +72,9 @@ const Bio = () => {
           </p>
         </CardContent>
       </Card>
-      <StyledContactFormCard><ContactCreateForm/></StyledContactFormCard>
-      
+      <StyledContactFormCard ><ContactCreateForm/></StyledContactFormCard>
+      <div> 
+    </div>
     </div>
   );
 };

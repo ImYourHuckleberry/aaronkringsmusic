@@ -4,6 +4,8 @@ import ContactCreateForm from '../ui-components/ContactCreateForm';
 import './customContactFormStyles.css';
 import { API } from 'aws-amplify'
 import { createContact } from '../graphql/mutations'; 
+import { Snackbar, IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 
 const StyledCard = styled(Card)(({ theme }) => ({
@@ -16,6 +18,30 @@ const StyledCard = styled(Card)(({ theme }) => ({
 }));
   
 const StyledContactFormCard = () => {
+  const [open, setOpen] = useState(false);
+
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const action = (
+    <React.Fragment>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
+
   const [formKey, setFormKey] = React.useState(0);
 
   const handleSubmit = async (event) => {
@@ -46,8 +72,10 @@ const Message = event.Message
       console.error('Error sending email:', error);
     }
     setFormKey((prevKey) => prevKey + 1);
+    setOpen(true)
   };
   return (
+    <>
     <StyledCard>
       <CardContent id="contact">
         <h1>Contact me for lessons or questions</h1>
@@ -56,6 +84,14 @@ const Message = event.Message
         </div>
       </CardContent>
     </StyledCard>
+    <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        message="Your message has been sent!"
+        action={action}
+      />
+    </>
   );
 };
 
