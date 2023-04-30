@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 2rem;
-    padding-top: 33.33vh; /* Start the cards 2/3 of the way down the page */
+    padding-top: 25vh; /* Start the cards 2/3 of the way down the page */
     padding-bottom: 20vh;
 
   }
@@ -14,7 +14,7 @@
     max-width: 800px;
     padding: 2rem;
     margin-bottom: 2rem;
-    background-color: #fff;
+    background-color: ivory;
   }
   
   .contact-form-card {
@@ -22,7 +22,7 @@
     max-width: 800px;
     padding: 2rem;
     margin-bottom: 2rem;
-    background-color: #fff;
+    background-color: ivory;
     height: 500px; /* Adjust the height as needed */
   }
   
@@ -42,3 +42,17 @@
     height: 100%;
   }
   
+  #h1 h2{
+    font-family: 'Oswaldo';
+  }
+
+  .name-title{
+    font-size: 5rem;
+    color: ivory;
+    
+  }
+
+  .current-event {
+    color: ivory;
+    padding-bottom: 5rem;
+  }

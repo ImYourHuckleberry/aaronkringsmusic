@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+
 .App {
   height: 100vh;
   display: flex;
@@ -46,8 +48,11 @@
 
 @media (max-width: 600px) {
   #myVideo {
-    left: 50%;
-    transform: translateX(-50%);
+    left: 70%;
+    transform: translateX(-40%);
     z-index: -1;
   }
+}
+img {
+  max-width: 100%;
 }
