@@ -7,8 +7,6 @@ import Media from "./Media"
 import StandardCard from './StandardCard';
 
 const Home = () => {
-//    StandardCardProps
-//    const {title, italics, mediaSource, mediaType, link, alt, handleAction} = this.props;
 
     return (
         <div className="bio-container" id="home">
@@ -38,8 +36,11 @@ const Home = () => {
                 callToAction="Get Tickets"
                 className="bio-card"
             />
+            <div id="bio"></div>
             <Bio/>
+            <div id="listen"></div>
             <Media />
+            <div id="contact"></div>
             <StyledContactFormCard id="contact"><ContactCreateForm /></StyledContactFormCard>
             <div>
             </div>

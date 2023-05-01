@@ -13,11 +13,10 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import GraphicIcon from '@mui/icons-material/GraphicEq';
 
-const pages = ['home', 'bio', 'listen', 'contact'];
+const pages = ['Home', 'Bio', 'Listen', 'Contact'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -26,15 +25,25 @@ function ResponsiveAppBar() {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
-  const handleScrollToSection = (sectionId) => {
-    console.log(sectionId)
-    const section = document.getElementById(sectionId);
-    console.log(section)
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
-      handleCloseNavMenu();
-    }
+  
+  const handleScrollToSection = (id) => {
+    const section = document.getElementById(id);
+    const yOffset = -100;
+  
+    const top = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  
+    handleCloseNavMenu();
+  };
+  
+  const handleScrollToSectionMobile = (id) => {
+    const section = document.getElementById(id);
+    const yOffset = -80;
+  
+    const top = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    window.scrollTo({ top });
+  
+    handleCloseNavMenu();
   };
 
 
@@ -89,7 +98,7 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={() => handleScrollToSection(page.toLowerCase())}>
+                <MenuItem key={page} onClick={() => handleScrollToSectionMobile(page.toLowerCase())}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
