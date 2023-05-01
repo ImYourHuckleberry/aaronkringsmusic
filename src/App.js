@@ -17,9 +17,9 @@ function App() {
             <source src="https://aaronkringsmusic-storage-5a99e8b203307-staging.s3.amazonaws.com/aaronbackground.mp4" type="video/mp4" />
           </video>
         </div>
-        <ResponsiveAppBar/>
+        <ResponsiveAppBar />
         <Router>
-          <Routes> 
+          <Routes>
             <Route path="/" element={<Home />} />
           </Routes>
         </Router>

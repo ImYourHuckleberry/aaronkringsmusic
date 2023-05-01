@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, styled } from '@mui/material';
 import ContactCreateForm from '../ui-components/ContactCreateForm';
 import './customContactFormStyles.css';
 import { API } from 'aws-amplify'
-import { createContact } from '../graphql/mutations'; 
+import { createContact } from '../graphql/mutations';
 import { Snackbar, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -16,7 +16,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
   backgroundColor: '#fff',
   height: 'fit-content'
 }));
-  
+
 const StyledContactFormCard = () => {
   const [open, setOpen] = useState(false);
 
@@ -46,11 +46,11 @@ const StyledContactFormCard = () => {
 
   const handleSubmit = async (event) => {
     console.log("my handlesubmit is being hit")
-const Name = event.Name
-const Email = event.Email
-const Phone = event.Phone
-const LessonType = event.LessonType
-const Message = event.Message
+    const Name = event.Name
+    const Email = event.Email
+    const Phone = event.Phone
+    const LessonType = event.LessonType
+    const Message = event.Message
     // Prepare the data to send in the POST request
 
     try {
@@ -76,15 +76,15 @@ const Message = event.Message
   };
   return (
     <>
-    <StyledCard>
-      <CardContent >
-        <h1>Contact me for lessons or questions</h1>
-        <div className="myFormContainer"> {/* Apply the custom styles */}
-          <ContactCreateForm key={formKey} onSubmit={handleSubmit} />
-        </div>
-      </CardContent>
-    </StyledCard>
-    <Snackbar
+      <StyledCard>
+        <CardContent >
+          <h1>Contact me for lessons or questions</h1>
+          <div className="myFormContainer"> {/* Apply the custom styles */}
+            <ContactCreateForm key={formKey} onSubmit={handleSubmit} />
+          </div>
+        </CardContent>
+      </StyledCard>
+      <Snackbar
         open={open}
         autoHideDuration={6000}
         onClose={handleClose}
