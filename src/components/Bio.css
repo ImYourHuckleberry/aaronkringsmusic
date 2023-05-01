@@ -12,11 +12,10 @@
 
 .bio-card {
   width: 80%;
-  max-width: 800px;
+  max-width: 1000px;
   padding: 2rem;
   margin-bottom: 2rem;
   background-color: ivory;
-  margin-top: 10vh;
 }
 
 .youtube-video {
@@ -45,7 +44,6 @@
   color: ivory;
   padding: 2rem;
   margin-bottom: 2rem;
-  height: 100vh;
   overflow-wrap: break-word;
 }
 
@@ -54,13 +52,11 @@
     font-size: 2rem;
     color: ivory;
     padding: 2rem;
-  margin-bottom: 2rem;
+    margin-bottom: 2rem;
     padding-top: 15vh;
     overflow-wrap: break-word;
   }
 }
-
-
 
 
 .fab-container {
