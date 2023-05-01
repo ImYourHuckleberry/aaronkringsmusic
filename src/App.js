@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import BottomNav from './components/BottomNav';
-import Bio from './components/Bio';
+import Home from './components/Home';
 import Amplify from '@aws-amplify/core'
 import config from '../src/aws-exports'
 Amplify.configure(config)
@@ -17,7 +17,7 @@ function App() {
         </div>
         <Router>
           <Routes>
-            <Route path="/" element={<Bio />} />
+            <Route path="/" element={<Home />} />
           </Routes>
           <BottomNav />
         </Router>
