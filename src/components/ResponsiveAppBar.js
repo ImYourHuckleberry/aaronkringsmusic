@@ -7,9 +7,7 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import GraphicIcon from '@mui/icons-material/GraphicEq';
 
@@ -64,7 +62,9 @@ function ResponsiveAppBar() {
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
+              cursor: 'pointer',
             }}
+            onClick={()=>handleScrollToSection('home')}
           >
             Aaron
           </Typography>
@@ -107,6 +107,7 @@ function ResponsiveAppBar() {
 
           <GraphicIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
+          onClick={()=>handleScrollToSectionMobile('home')}
             variant="h5"
             noWrap
             component="a"
@@ -120,9 +121,18 @@ function ResponsiveAppBar() {
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
+              cursor: 'pointer',
             }}
           >
             Aaron
+          </Typography>
+          {/* this is super stupid but the only way i could get this thing to center */}
+          <Typography
+            sx={{
+              display: { xs: 'flex', md: 'none' },
+              flexGrow: .5
+            }}
+          >
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
