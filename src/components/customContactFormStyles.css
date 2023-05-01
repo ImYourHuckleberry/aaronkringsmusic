@@ -35,6 +35,7 @@ CustomStyles.css
 
 /* Override styles for select inputs */
 .myFormContainer select {
+  -webkit-appearance: menulist;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
