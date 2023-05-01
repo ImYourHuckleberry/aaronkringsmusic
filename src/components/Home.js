@@ -1,18 +1,25 @@
 import React from 'react';
-import { Card, CardContent, Button } from '@mui/material';
 import './Bio.css';
 import ContactCreateForm from '../ui-components/ContactCreateForm';
 import StyledContactFormCard from './StyledContactFormCard';
 import Bio from "./Bio"
 import Media from "./Media"
 import StandardCard from './StandardCard';
+import EmailIcon from '@mui/icons-material/Email';
+import Fab from '@mui/material/Fab';
 
 const Home = () => {
-//    StandardCardProps
-//    const {title, italics, mediaSource, mediaType, link, alt, handleAction} = this.props;
+
+    const handleScrollToContact = () => {
+        const section = document.getElementById('contact');
+        const yOffset = -80;
+      
+        const top = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top });
+      };
 
     return (
-        <div className="bio-container">
+        <div className="bio-container" id="home">
             <div className='name-title'>
             <h1 >Aaron Krings</h1>
             <h2>Bassist Performer Educator</h2>
@@ -26,6 +33,7 @@ const Home = () => {
                 alt="NOW HEAR THIS! Album Cover."
                 subtitle="Available Now"
                 callToAction="Buy"
+                className="bio-card"
                 />
             <StandardCard
                 title="Now Playing in: "
@@ -36,12 +44,21 @@ const Home = () => {
                 alt="Million Dollar Quartet promotional picture"
                 subtitle="April 20 - May 14"
                 callToAction="Get Tickets"
+                className="bio-card"
             />
-            <Bio />
+            <div id="bio"></div>
+            <Bio/>
+            <div id="listen"></div>
             <Media />
-            <StyledContactFormCard ><ContactCreateForm /></StyledContactFormCard>
+            <div id="contact"></div>
+            <StyledContactFormCard id="contact"><ContactCreateForm /></StyledContactFormCard>
             <div>
             </div>
+            <div className="fab-container">
+        <Fab color="primary" aria-label="add"  size="small">
+          <EmailIcon onClick={()=>handleScrollToContact()}/>
+        </Fab>
+      </div>
         </div>
     );
 };

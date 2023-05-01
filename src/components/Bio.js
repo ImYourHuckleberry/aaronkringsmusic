@@ -4,7 +4,7 @@ import './Bio.css';
 
 const Bio = () => {
   return (
-      <Card className="bio-card" id="bio">
+      <Card className="bio-card">
         <CardContent>
           <h2>Aaron Krings</h2>
           <p>

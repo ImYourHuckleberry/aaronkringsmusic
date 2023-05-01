@@ -77,7 +77,7 @@ const Message = event.Message
   return (
     <>
     <StyledCard>
-      <CardContent id="contact">
+      <CardContent >
         <h1>Contact me for lessons or questions</h1>
         <div className="myFormContainer"> {/* Apply the custom styles */}
           <ContactCreateForm key={formKey} onSubmit={handleSubmit} />

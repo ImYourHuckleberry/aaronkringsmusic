@@ -4,7 +4,7 @@ import './Bio.css';
 
 const Media =()=>{
     return (
-        <Card className="bio-card bio-card-second" id="media">
+        <Card className="bio-card bio-card-second">
         <CardContent>
           <h2>Media</h2>
           <div className="youtube-video">
