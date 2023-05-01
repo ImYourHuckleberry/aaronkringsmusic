@@ -1,74 +1,86 @@
 .bio-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 1rem;
-    padding-top: 2vh; /* Start the cards 2/3 of the way down the page */
-    padding-bottom: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  padding-top: 2vh;
+  /* Start the cards 2/3 of the way down the page */
+  padding-bottom: 20vh;
 
-  }
-  
-  .bio-card {
-    width: 80%;
-    max-width: 800px;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    background-color: ivory;
-  }
-  
-  .contact-form-card {
-    width: 80%;
-    max-width: 800px;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    background-color: ivory;
-    height: 500px; /* Adjust the height as needed */
-  }
-  
-  .youtube-video {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio (change as needed) */
-    height: 0;
-    overflow: hidden;
-    margin-bottom: 1rem;
-  }
-  
-  .youtube-video iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-  
-  #h1 h2{
-    font-family: 'Oswaldo';
-  }
+}
 
-  .name-title{
-    font-size: 5rem;
+.bio-card {
+  width: 80%;
+  max-width: 800px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  background-color: ivory;
+  margin-top: 10vh;
+}
+
+.youtube-video {
+  position: relative;
+  padding-bottom: 56.25%;
+  /* 16:9 aspect ratio (change as needed) */
+  height: 0;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.youtube-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#h1 h2 {
+  font-family: 'Oswaldo';
+}
+
+.name-title {
+  font-size: 5rem;
+  color: ivory;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  height: 100vh;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 600px) {
+  .name-title {
+    font-size: 2rem;
     color: ivory;
     padding: 2rem;
-    height: 100vh;
-    
-  }
-
-  .current-event {
-    color: ivory;
-    padding-bottom: 5rem;
-  }
-  @media (max-width: 600px) {
-    .name-title {
-      font-size: 2rem;
-    color: ivory;
-    padding: 1rem;
+  margin-bottom: 2rem;
     padding-top: 15vh;
-    }
+    overflow-wrap: break-word;
   }
+}
 
-  .fab-container {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-  }
+
+
+
+.fab-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 10vh;
+}

@@ -32,6 +32,7 @@ CustomStyles.css
 .amplify-select__icon-wrapper {
   display: none;
 }
+
 /* Override styles for select inputs */
 .myFormContainer select {
   padding: 10px;
@@ -54,10 +55,9 @@ CustomStyles.css
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
-  width:98%;
+  width: 98%;
 }
 
 .myFormContainer button:hover {
   background-color: #45a049;
 }
-

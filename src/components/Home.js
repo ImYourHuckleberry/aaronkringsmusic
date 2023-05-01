@@ -7,23 +7,24 @@ import Media from "./Media"
 import StandardCard from './StandardCard';
 import EmailIcon from '@mui/icons-material/Email';
 import Fab from '@mui/material/Fab';
+import Title from './Title'
 
 const Home = () => {
 
     const handleScrollToContact = () => {
         const section = document.getElementById('contact');
         const yOffset = -80;
-      
+
         const top = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
         window.scrollTo({ top });
-      };
+    };
 
     return (
         <div className="bio-container" id="home">
-            <div className='name-title'>
-            <h1 >Aaron Krings</h1>
-            <h2>Bassist Performer Educator</h2>
+            <div className='title-container'>
+            <Title className="name-title" />
             </div>
+            <div className='card-container'>
             <StandardCard
                 title="New Album: "
                 italics="NOW HEAR THIS!"
@@ -34,7 +35,7 @@ const Home = () => {
                 subtitle="Available Now"
                 callToAction="Buy"
                 className="bio-card"
-                />
+            />
             <StandardCard
                 title="Now Playing in: "
                 italics="The Million Dollar Quartet"
@@ -47,18 +48,19 @@ const Home = () => {
                 className="bio-card"
             />
             <div id="bio"></div>
-            <Bio/>
+            <Bio />
             <div id="listen"></div>
             <Media />
             <div id="contact"></div>
             <StyledContactFormCard id="contact"><ContactCreateForm /></StyledContactFormCard>
             <div>
             </div>
+            </div>
             <div className="fab-container">
-        <Fab color="primary" aria-label="add"  size="small">
-          <EmailIcon onClick={()=>handleScrollToContact()}/>
-        </Fab>
-      </div>
+                <Fab color="primary" aria-label="add" size="small">
+                    <EmailIcon onClick={() => handleScrollToContact()} />
+                </Fab>
+            </div>
         </div>
     );
 };

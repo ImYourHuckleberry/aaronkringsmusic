@@ -23,24 +23,24 @@ function ResponsiveAppBar() {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-  
+
   const handleScrollToSection = (id) => {
     const section = document.getElementById(id);
     const yOffset = -100;
-  
+
     const top = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
     window.scrollTo({ top, behavior: 'smooth' });
-  
+
     handleCloseNavMenu();
   };
-  
+
   const handleScrollToSectionMobile = (id) => {
     const section = document.getElementById(id);
     const yOffset = -80;
-  
+
     const top = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
     window.scrollTo({ top });
-  
+
     handleCloseNavMenu();
   };
 
@@ -64,7 +64,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
               cursor: 'pointer',
             }}
-            onClick={()=>handleScrollToSection('home')}
+            onClick={() => handleScrollToSection('home')}
           >
             Aaron
           </Typography>
@@ -107,7 +107,7 @@ function ResponsiveAppBar() {
 
           <GraphicIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
-          onClick={()=>handleScrollToSectionMobile('home')}
+            onClick={() => handleScrollToSectionMobile('home')}
             variant="h5"
             noWrap
             component="a"
