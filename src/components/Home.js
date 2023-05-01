@@ -21,7 +21,10 @@ const Home = () => {
 
     return (
         <div className="bio-container" id="home">
-            <Title />
+            <div className='title-container'>
+            <Title className="name-title" />
+            </div>
+            <div className='card-container'>
             <StandardCard
                 title="New Album: "
                 italics="NOW HEAR THIS!"
@@ -51,6 +54,7 @@ const Home = () => {
             <div id="contact"></div>
             <StyledContactFormCard id="contact"><ContactCreateForm /></StyledContactFormCard>
             <div>
+            </div>
             </div>
             <div className="fab-container">
                 <Fab color="primary" aria-label="add" size="small">

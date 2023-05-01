@@ -16,16 +16,7 @@
   padding: 2rem;
   margin-bottom: 2rem;
   background-color: ivory;
-}
-
-.contact-form-card {
-  width: 80%;
-  max-width: 800px;
-  padding: 2rem;
-  margin-bottom: 2rem;
-  background-color: ivory;
-  height: 500px;
-  /* Adjust the height as needed */
+  margin-top: 10vh;
 }
 
 .youtube-video {
@@ -53,26 +44,43 @@
   font-size: 5rem;
   color: ivory;
   padding: 2rem;
+  margin-bottom: 2rem;
   height: 100vh;
-
-}
-
-.current-event {
-  color: ivory;
-  padding-bottom: 5rem;
+  overflow-wrap: break-word;
 }
 
 @media (max-width: 600px) {
   .name-title {
     font-size: 2rem;
     color: ivory;
-    padding: 1rem;
+    padding: 2rem;
+  margin-bottom: 2rem;
     padding-top: 15vh;
+    overflow-wrap: break-word;
   }
 }
+
+
+
 
 .fab-container {
   position: fixed;
   bottom: 20px;
   right: 20px;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 10vh;
 }

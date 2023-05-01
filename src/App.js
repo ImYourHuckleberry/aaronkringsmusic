@@ -1,6 +1,5 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import BottomNav from './components/BottomNav';
 import Home from './components/Home';
 import ResponsiveAppBar from './components/ResponsiveAppBar'
 import Amplify from '@aws-amplify/core'
