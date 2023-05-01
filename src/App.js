@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div className="video-container">
-          <video autoPlay muted loop id="myVideo">
+          <video autoPlay muted loop id="myVideo" playsInline>
             <source src="https://aaronkringsmusic-storage-5a99e8b203307-staging.s3.amazonaws.com/aaronbackground.mp4" type="video/mp4" />
           </video>
         </div>
