@@ -5,8 +5,18 @@ import StyledContactFormCard from './StyledContactFormCard';
 import Bio from "./Bio"
 import Media from "./Media"
 import StandardCard from './StandardCard';
+import EmailIcon from '@mui/icons-material/Email';
+import Fab from '@mui/material/Fab';
 
 const Home = () => {
+
+    const handleScrollToContact = () => {
+        const section = document.getElementById('contact');
+        const yOffset = -80;
+      
+        const top = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top });
+      };
 
     return (
         <div className="bio-container" id="home">
@@ -44,6 +54,11 @@ const Home = () => {
             <StyledContactFormCard id="contact"><ContactCreateForm /></StyledContactFormCard>
             <div>
             </div>
+            <div className="fab-container">
+        <Fab color="primary" aria-label="add"  size="small">
+          <EmailIcon onClick={()=>handleScrollToContact()}/>
+        </Fab>
+      </div>
         </div>
     );
 };
