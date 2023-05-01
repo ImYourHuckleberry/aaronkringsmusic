@@ -1,5 +1,4 @@
 import React from 'react';
-import { Card, CardContent, Button } from '@mui/material';
 import './Bio.css';
 import ContactCreateForm from '../ui-components/ContactCreateForm';
 import StyledContactFormCard from './StyledContactFormCard';
@@ -12,7 +11,7 @@ const Home = () => {
 //    const {title, italics, mediaSource, mediaType, link, alt, handleAction} = this.props;
 
     return (
-        <div className="bio-container">
+        <div className="bio-container" id="home">
             <div className='name-title'>
             <h1 >Aaron Krings</h1>
             <h2>Bassist Performer Educator</h2>
@@ -26,6 +25,7 @@ const Home = () => {
                 alt="NOW HEAR THIS! Album Cover."
                 subtitle="Available Now"
                 callToAction="Buy"
+                className="bio-card"
                 />
             <StandardCard
                 title="Now Playing in: "
@@ -36,10 +36,11 @@ const Home = () => {
                 alt="Million Dollar Quartet promotional picture"
                 subtitle="April 20 - May 14"
                 callToAction="Get Tickets"
+                className="bio-card"
             />
-            <Bio />
+            <Bio/>
             <Media />
-            <StyledContactFormCard ><ContactCreateForm /></StyledContactFormCard>
+            <StyledContactFormCard id="contact"><ContactCreateForm /></StyledContactFormCard>
             <div>
             </div>
         </div>

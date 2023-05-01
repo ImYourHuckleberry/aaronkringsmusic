@@ -3,7 +3,7 @@ import { Card, CardContent, Button } from '@mui/material';
 import './Bio.css';
 
 const StandardCard = (props) => {
-    const { title, italics, mediaSource, mediaType, link, alt, subtitle, callToAction } = props;
+    const { title, italics, mediaSource, mediaType, link, alt, subtitle, callToAction, className } = props;
     const handleButtonAlbum = () => {
         window.open(
             link,
@@ -12,7 +12,7 @@ const StandardCard = (props) => {
     }
 
     return (
-        <Card className="bio-card" id="current-gig">
+        <Card className={className} id="current-gig">
             <CardContent>
                 <h2>{title}<em>{italics}</em></h2>
                 <h3>{subtitle}</h3>
