@@ -76,7 +76,7 @@ const StyledContactFormCard = () => {
   };
   return (
     <>
-      <StyledCard>
+      <StyledCard >
         <CardContent >
           <h1>Contact me for lessons or questions</h1>
           <div className="myFormContainer"> {/* Apply the custom styles */}

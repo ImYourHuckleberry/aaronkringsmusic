@@ -31,11 +31,17 @@ CustomStyles.css
 
 .amplify-select__icon-wrapper {
   display: none;
+
 }
 
 /* Override styles for select inputs */
 .myFormContainer select {
-  -webkit-appearance: menulist;
+  appearance: none;
+  background-color: transparent;
+  background-image: url("https://aaronkringsmusic-storage-5a99e8b203307-staging.s3.amazonaws.com/expand_more_FILL0_wght400_GRAD0_opsz48.svg");
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: 30px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
