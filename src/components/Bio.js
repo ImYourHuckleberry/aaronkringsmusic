@@ -7,9 +7,24 @@ const Bio = () => {
     <Card className="home-card">
       <CardContent>
         <h1>Bio</h1>
-        <p>
-        Aaron Krings is an upright and electric bassist living and performing in the greater Chicagoland area. Aaron grew up in St. Louis, MO and started playing electric bass at age 11 and double bass at age 16. Aaron has a bachelor’s degree in music therapy and a master’s degree in jazz studies from Western Illinois University. In 2019, Aaron toured with the Glenn Miller Orchestra playing bass playing in all 48 continental states as well as internationally in Japan and Canada. Since coming back to the Chicagoland area in 2020, Aaron has been performing in various groups, teaching music lessons, and exploring the vibrant Chicago music scene, taking inspiration from the city's rich musical heritage. Aaron currently performs in various styles including: jazz, big band, progressive rock-fusion, roots rock, bluegrass, R&B, and theatre productions. Aaron has performed with artists, such as: Leroy Jones, Ashlin Parker, Rick Margitza, Chris Vadala, Sam Robinson, Jim Piela, and the Blueshift Big Band. Aaron teaches both in person and virtual upright and electric bass lessons. He also holds a board certification in music therapy and currently serves adult and older adult clients in long term and hospice care. Aaron lives in the Portage Park neighborhood of Chicago with his wife who is also a board certified music therapist. 
-        </p>
+        <h3>About Aaron Krings</h3>
+<p>Aaron Krings is an upright and electric bassist living and performing in the greater Chicagoland area. Originally from St. Louis, MO, he has been passionate about music since a young age.</p>
+
+<h3>Education</h3>
+<p>Aaron started playing electric bass at age 11 and double bass at age 16. He holds a bachelor's degree in music therapy and a master's degree in jazz studies from Western Illinois University.</p>
+
+<h3>Professional Experience</h3>
+<p>In 2019, Aaron toured with the Glenn Miller Orchestra, showcasing his bass skills across all 48 continental states and internationally in Japan and Canada. Since returning to the Chicagoland area in 2020, he has been actively involved in the local music scene, drawing inspiration from the city's rich musical heritage.</p>
+
+<h3>Musical Style and Collaborations</h3>
+<p>Aaron's performances cover a wide range of styles including jazz, big band, progressive rock-fusion, roots rock, bluegrass, R&B, and theatre productions. He has had the opportunity to collaborate with notable artists such as Leroy Jones, Ashlin Parker, Rick Margitza, Chris Vadala, Sam Robinson, Jim Piela, and the Blueshift Big Band.</p>
+
+<h3>Teaching and Music Therapy</h3>
+<p>Aaron teaches both in person and virtual upright and electric bass lessons. Additionally, he holds a board certification in music therapy and works with adult and older adult clients in long term and hospice care.</p>
+
+<h3>Personal Life</h3>
+<p>Aaron resides in the Portage Park neighborhood of Chicago with his wife, who is also a board-certified music therapist.</p>
+
 
 <h2>Venues Performed At:</h2>
  
