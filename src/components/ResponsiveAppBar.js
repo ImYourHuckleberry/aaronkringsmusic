@@ -66,7 +66,7 @@ function ResponsiveAppBar() {
             }}
             onClick={() => handleScrollToSection('home')}
           >
-            Aaron
+            Aaron Krings
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -124,7 +124,7 @@ function ResponsiveAppBar() {
               cursor: 'pointer',
             }}
           >
-            Aaron
+            Aaron Krings
           </Typography>
           {/* this is super stupid but the only way i could get this thing to center */}
           <Typography
