@@ -34,7 +34,7 @@ const Home = () => {
                 alt="NOW HEAR THIS! Album Cover."
                 subtitle="Available Now"
                 callToAction="Buy"
-                className="bio-card"
+                className="home-card"
             />
             <StandardCard
                 title="Now Playing in: "
@@ -45,14 +45,14 @@ const Home = () => {
                 alt="Million Dollar Quartet promotional picture"
                 subtitle="April 20 - May 14"
                 callToAction="Get Tickets"
-                className="bio-card"
+                className="home-card"
             />
-            <div id="bio"></div>
-            <Bio />
             <div id="listen"></div>
             <Media />
+            <div id="bio"></div>
+            <Bio />
             <div id="contact"></div>
-            <StyledContactFormCard id="contact"><ContactCreateForm /></StyledContactFormCard>
+            <StyledContactFormCard id="contact" className="home-card"><ContactCreateForm /></StyledContactFormCard>
             <div>
             </div>
             </div>

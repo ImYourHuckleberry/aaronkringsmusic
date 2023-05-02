@@ -10,7 +10,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 const StyledCard = styled(Card)(({ theme }) => ({
   width: '80%',
-  maxWidth: '800px',
+  maxWidth: '1000px',
   padding: '2rem',
   marginBottom: '2rem',
   backgroundColor: '#fff',
@@ -76,7 +76,7 @@ const StyledContactFormCard = () => {
   };
   return (
     <>
-      <StyledCard>
+      <StyledCard >
         <CardContent >
           <h1>Contact me for lessons or questions</h1>
           <div className="myFormContainer"> {/* Apply the custom styles */}
