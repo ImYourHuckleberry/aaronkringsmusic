@@ -8,6 +8,7 @@ const Admin = () => {
     const checkAdminStatus = async () => {
       try {
         const user = await Auth.currentAuthenticatedUser();
+        console.log(user)
         const isAdmin = user.signInUserSession.accessToken.payload['cognito:groups']?.includes('admin');
         if (!isAdmin) {
           window.location.href = '/'; // Redirect to home page for non-admin users
