@@ -1,9 +1,10 @@
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
-import { Amplify, Auth } from 'aws-amplify';
+import { Amplify, Auth, DataStore } from 'aws-amplify';
 import { useEffect } from 'react';
 import { listEvents } from '../graphql/queries'
 import EventCreateFormCopy from './EventCreateFormCopy'
+import EventUpdateFormCopy from './EventUpdateFormCopy';
 import { Card, CardContent, styled } from '@mui/material';
 import './customContactFormStyles.css';
 import { API, graphqlOperation } from 'aws-amplify'
@@ -11,6 +12,10 @@ import '@aws-amplify/ui-react/styles.css';
 import React, { useState } from 'react';
 import awsconfig from '../aws-exports';
 import EventCard from './EventCard';
+import { Button } from 'react-scroll';
+import { deleteEvent } from '../graphql/mutations';
+import { Event } from '../models'
+import { Api } from '@mui/icons-material';
 Amplify.configure(awsconfig)
 Auth.configure(awsconfig)
 
@@ -26,6 +31,8 @@ const StyledCard = styled(Card)(({ theme }) => ({
 const Admin = () => {
   const [events, setEvents] = useState([])
   const [formKey, setFormKey] = React.useState(0);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editEventKey, setEditEventKey] = useState("null")
 
   useEffect(() => {
     const checkAdminStatus = async () => {
@@ -45,10 +52,11 @@ const Admin = () => {
 
   useEffect(() => {
     fetchEvents()
-  }, [])
+  }, [events])
 
-  const getFreshForm =()=>{
+  const getFreshForm = () => {
     setFormKey((prevKey) => prevKey + 1);
+    fetchEvents();
   }
 
   async function fetchEvents() {
@@ -60,40 +68,78 @@ const Admin = () => {
     } catch (err) { console.log('error fetching events') }
   }
 
+  const handleEdit = (event) => {
+    console.log("click")
+    console.log(event)
+    setEditEventKey(event.id)
+    setIsEditing(true)
+  }
+
+  const deleteEventById = async (event) => {
+    console.log(event)
+    try {
+      const input = {
+        id: event.id,
+        _version: event._version
+      };
+      
+      await API.graphql(graphqlOperation(deleteEvent, { input }));
+      fetchEvents();
+    } catch (error) {
+      console.error('Error deleting event:', error);
+    }
+  };
+  const handleEditSubmission = () => {
+    setEditEventKey(null)
+    setIsEditing(false)
+    fetchEvents()
+  }
   return (
 
     <>
-      <StyledCard  key={formKey}>
+      <StyledCard key={formKey}>
         <CardContent >
-          <h1>Add an Event</h1>
-          <div> {/* Apply the custom styles */}
-            <EventCreateFormCopy 
-              getFreshForm={getFreshForm}
-            />
-          </div>
-            {
-         events.map((event, index) => (
-          <EventCard 
-            time={event.time}
-            date={event.date}
-            title={event.title}
-            subTitle={event.subTitle}
-            extraInfo={event.extraInfo}
-            location={event.location}
-            bandUrl={event.bandUrl}
-            veneueUrl={event.veneueUrl}
-            image={event.image}
-            key={event.id ? event.id : index}
+          {!isEditing && <h1>Add an Event</h1>}
+          {isEditing && <h1>Edit an Event</h1>}
 
-          />
-         ))
-       }
+          <div> {/* Apply the custom styles */}
+            {!isEditing && <EventCreateFormCopy
+              getFreshForm={getFreshForm}
+            />}
+
+
+            {isEditing && <EventUpdateFormCopy
+              id={editEventKey}
+              handleEditSubmission={handleEditSubmission}
+            />}
+          </div>
+          {
+            events.filter(event => !event._deleted).map((event, index) => (
+              <div key={event.id}>
+
+                <EventCard
+                  time={event.time}
+                  date={event.date}
+                  title={event.title}
+                  subTitle={event.subTitle}
+                  extraInfo={event.extraInfo}
+                  location={event.location}
+                  bandUrl={event.bandUrl}
+                  veneueUrl={event.veneueUrl}
+                  image={event.image}
+                  key={event.id ? event.id : index}
+                />
+                <button key={"edit_button_" + index} onClick={() => handleEdit(event)}>edit</button>
+                <button key={"delete_button_" + index} onClick={() => deleteEventById(event)}>DELETE</button>
+              </div>
+            ))
+          }
         </CardContent>
       </StyledCard>
     </>
-      )
-      
-  ;
+  )
+
+    ;
 };
 
 export default withAuthenticator(Admin);
