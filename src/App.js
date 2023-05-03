@@ -3,10 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import ResponsiveAppBar from './components/ResponsiveAppBar'
 import Admin from "./components/Admin"
-import { Auth } from 'aws-amplify';
+import { Amplify, Auth } from 'aws-amplify';
 import awsconfig from './aws-exports';
-
-// >>New - Configuring Auth Module
+Amplify.configure(awsconfig)
 Auth.configure(awsconfig);
 
 function App() {

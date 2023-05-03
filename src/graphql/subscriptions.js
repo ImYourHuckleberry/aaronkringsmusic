@@ -1,6 +1,66 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateEvent = /* GraphQL */ `
+  subscription OnCreateEvent($filter: ModelSubscriptionEventFilterInput) {
+    onCreateEvent(filter: $filter) {
+      id
+      date
+      time
+      title
+      subTitle
+      extraInfo
+      location
+      veneueUrl
+      bandUrl
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateEvent = /* GraphQL */ `
+  subscription OnUpdateEvent($filter: ModelSubscriptionEventFilterInput) {
+    onUpdateEvent(filter: $filter) {
+      id
+      date
+      time
+      title
+      subTitle
+      extraInfo
+      location
+      veneueUrl
+      bandUrl
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteEvent = /* GraphQL */ `
+  subscription OnDeleteEvent($filter: ModelSubscriptionEventFilterInput) {
+    onDeleteEvent(filter: $filter) {
+      id
+      date
+      time
+      title
+      subTitle
+      extraInfo
+      location
+      veneueUrl
+      bandUrl
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const onCreateContact = /* GraphQL */ `
   subscription OnCreateContact($filter: ModelSubscriptionContactFilterInput) {
     onCreateContact(filter: $filter) {
