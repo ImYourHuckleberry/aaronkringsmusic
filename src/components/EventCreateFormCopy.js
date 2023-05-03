@@ -449,6 +449,7 @@ const EventCreateFormCopy = (props) => {
                     onClick={(event) => {
                         event.preventDefault();
                         resetStateValues();
+                        getFreshForm();
                     }}
                     {...getOverrideProps(overrides, "ClearButton")}
                 ></Button>
