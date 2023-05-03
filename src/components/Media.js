@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardContent, Button } from '@mui/material';
+import { Card, CardContent } from '@mui/material';
 import './Bio.css';
 
 const Media = () => {

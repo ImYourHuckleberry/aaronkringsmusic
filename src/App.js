@@ -2,10 +2,12 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import ResponsiveAppBar from './components/ResponsiveAppBar'
-import Amplify from '@aws-amplify/core'
-import config from '../src/aws-exports'
+import Admin from "./components/Admin"
+import { Auth } from 'aws-amplify';
+import awsconfig from './aws-exports';
 
-Amplify.configure(config)
+// >>New - Configuring Auth Module
+Auth.configure(awsconfig);
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/admin" element={<Admin />} />
           </Routes>
         </Router>
       </header>

@@ -7,9 +7,10 @@ const LessonTypes = {
   "ONLINE": "ONLINE"
 };
 
-const { Contact } = initSchema(schema);
+const { Event, Contact } = initSchema(schema);
 
 export {
+  Event,
   Contact,
   LessonTypes
 };
