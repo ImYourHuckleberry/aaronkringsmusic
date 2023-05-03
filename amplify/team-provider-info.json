@@ -24,7 +24,7 @@
       "function": {
         "formsumbissionemail": {
           "deploymentBucketName": "amplify-amplify62a0cacf0b354-staging-03307-deployment",
-          "s3Key": "amplify-builds/formsumbissionemail-38564245694953626f67-build.zip",
+          "s3Key": "amplify-builds/formsumbissionemail-42726459626c4a726146-build.zip",
           "sesEmail": "w.tyler.krings@gmail.com"
         }
       }

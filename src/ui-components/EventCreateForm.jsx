@@ -31,6 +31,7 @@ export default function EventCreateForm(props) {
     location: "",
     veneueUrl: "",
     bandUrl: "",
+    image: "",
   };
   const [date, setDate] = React.useState(initialValues.date);
   const [time, setTime] = React.useState(initialValues.time);
@@ -40,6 +41,7 @@ export default function EventCreateForm(props) {
   const [location, setLocation] = React.useState(initialValues.location);
   const [veneueUrl, setVeneueUrl] = React.useState(initialValues.veneueUrl);
   const [bandUrl, setBandUrl] = React.useState(initialValues.bandUrl);
+  const [image, setImage] = React.useState(initialValues.image);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setDate(initialValues.date);
@@ -50,6 +52,7 @@ export default function EventCreateForm(props) {
     setLocation(initialValues.location);
     setVeneueUrl(initialValues.veneueUrl);
     setBandUrl(initialValues.bandUrl);
+    setImage(initialValues.image);
     setErrors({});
   };
   const validations = {
@@ -61,6 +64,7 @@ export default function EventCreateForm(props) {
     location: [],
     veneueUrl: [{ type: "URL" }],
     bandUrl: [{ type: "URL" }],
+    image: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -96,6 +100,7 @@ export default function EventCreateForm(props) {
           location,
           veneueUrl,
           bandUrl,
+          image,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -159,6 +164,7 @@ export default function EventCreateForm(props) {
               location,
               veneueUrl,
               bandUrl,
+              image,
             };
             const result = onChange(modelFields);
             value = result?.date ?? value;
@@ -191,6 +197,7 @@ export default function EventCreateForm(props) {
               location,
               veneueUrl,
               bandUrl,
+              image,
             };
             const result = onChange(modelFields);
             value = result?.time ?? value;
@@ -222,6 +229,7 @@ export default function EventCreateForm(props) {
               location,
               veneueUrl,
               bandUrl,
+              image,
             };
             const result = onChange(modelFields);
             value = result?.title ?? value;
@@ -253,6 +261,7 @@ export default function EventCreateForm(props) {
               location,
               veneueUrl,
               bandUrl,
+              image,
             };
             const result = onChange(modelFields);
             value = result?.subTitle ?? value;
@@ -284,6 +293,7 @@ export default function EventCreateForm(props) {
               location,
               veneueUrl,
               bandUrl,
+              image,
             };
             const result = onChange(modelFields);
             value = result?.extraInfo ?? value;
@@ -315,6 +325,7 @@ export default function EventCreateForm(props) {
               location: value,
               veneueUrl,
               bandUrl,
+              image,
             };
             const result = onChange(modelFields);
             value = result?.location ?? value;
@@ -346,6 +357,7 @@ export default function EventCreateForm(props) {
               location,
               veneueUrl: value,
               bandUrl,
+              image,
             };
             const result = onChange(modelFields);
             value = result?.veneueUrl ?? value;
@@ -377,6 +389,7 @@ export default function EventCreateForm(props) {
               location,
               veneueUrl,
               bandUrl: value,
+              image,
             };
             const result = onChange(modelFields);
             value = result?.bandUrl ?? value;
@@ -390,6 +403,38 @@ export default function EventCreateForm(props) {
         errorMessage={errors.bandUrl?.errorMessage}
         hasError={errors.bandUrl?.hasError}
         {...getOverrideProps(overrides, "bandUrl")}
+      ></TextField>
+      <TextField
+        label="Image"
+        isRequired={false}
+        isReadOnly={false}
+        value={image}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              date,
+              time,
+              title,
+              subTitle,
+              extraInfo,
+              location,
+              veneueUrl,
+              bandUrl,
+              image: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.image ?? value;
+          }
+          if (errors.image?.hasError) {
+            runValidationTasks("image", value);
+          }
+          setImage(value);
+        }}
+        onBlur={() => runValidationTasks("image", image)}
+        errorMessage={errors.image?.errorMessage}
+        hasError={errors.image?.hasError}
+        {...getOverrideProps(overrides, "image")}
       ></TextField>
       <Flex
         justifyContent="space-between"

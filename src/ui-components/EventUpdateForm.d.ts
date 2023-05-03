@@ -22,6 +22,7 @@ export declare type EventUpdateFormInputValues = {
     location?: string;
     veneueUrl?: string;
     bandUrl?: string;
+    image?: string;
 };
 export declare type EventUpdateFormValidationValues = {
     date?: ValidationFunction<string>;
@@ -32,6 +33,7 @@ export declare type EventUpdateFormValidationValues = {
     location?: ValidationFunction<string>;
     veneueUrl?: ValidationFunction<string>;
     bandUrl?: ValidationFunction<string>;
+    image?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type EventUpdateFormOverridesProps = {
@@ -44,6 +46,7 @@ export declare type EventUpdateFormOverridesProps = {
     location?: PrimitiveOverrideProps<TextFieldProps>;
     veneueUrl?: PrimitiveOverrideProps<TextFieldProps>;
     bandUrl?: PrimitiveOverrideProps<TextFieldProps>;
+    image?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type EventUpdateFormProps = React.PropsWithChildren<{
     overrides?: EventUpdateFormOverridesProps | undefined | null;

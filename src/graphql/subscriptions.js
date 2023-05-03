@@ -13,6 +13,7 @@ export const onCreateEvent = /* GraphQL */ `
       location
       veneueUrl
       bandUrl
+      image
       createdAt
       updatedAt
       _version
@@ -33,6 +34,7 @@ export const onUpdateEvent = /* GraphQL */ `
       location
       veneueUrl
       bandUrl
+      image
       createdAt
       updatedAt
       _version
@@ -53,6 +55,7 @@ export const onDeleteEvent = /* GraphQL */ `
       location
       veneueUrl
       bandUrl
+      image
       createdAt
       updatedAt
       _version

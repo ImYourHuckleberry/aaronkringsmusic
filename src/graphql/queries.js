@@ -13,6 +13,7 @@ export const getEvent = /* GraphQL */ `
       location
       veneueUrl
       bandUrl
+      image
       createdAt
       updatedAt
       _version
@@ -38,6 +39,7 @@ export const listEvents = /* GraphQL */ `
         location
         veneueUrl
         bandUrl
+        image
         createdAt
         updatedAt
         _version
@@ -72,6 +74,7 @@ export const syncEvents = /* GraphQL */ `
         location
         veneueUrl
         bandUrl
+        image
         createdAt
         updatedAt
         _version

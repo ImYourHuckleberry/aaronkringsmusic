@@ -3,7 +3,7 @@ import '@aws-amplify/ui-react/styles.css';
 import { Amplify, Auth } from 'aws-amplify';
 import { useEffect } from 'react';
 import { listEvents } from '../graphql/queries'
-import EventCreateForm from '../ui-components/EventCreateForm'
+import EventCreateFormCopy from './EventCreateFormCopy'
 import { Card, CardContent, styled } from '@mui/material';
 import './customContactFormStyles.css';
 import { API, graphqlOperation } from 'aws-amplify'
@@ -25,6 +25,8 @@ const StyledCard = styled(Card)(({ theme }) => ({
 
 const Admin = () => {
   const [events, setEvents] = useState([])
+  const [formKey, setFormKey] = React.useState(0);
+
   useEffect(() => {
     const checkAdminStatus = async () => {
       try {
@@ -45,10 +47,15 @@ const Admin = () => {
     fetchEvents()
   }, [])
 
+  const getFreshForm =()=>{
+    setFormKey((prevKey) => prevKey + 1);
+  }
+
   async function fetchEvents() {
     try {
       const eventData = await API.graphql(graphqlOperation(listEvents))
       const events = eventData.data.listEvents.items
+      events.sort((a, b) => new Date(a.date) - new Date(b.date));
       setEvents(events)
     } catch (err) { console.log('error fetching events') }
   }
@@ -56,11 +63,13 @@ const Admin = () => {
   return (
 
     <>
-      <StyledCard >
+      <StyledCard  key={formKey}>
         <CardContent >
-          <h1>Contact me for lessons or questions</h1>
+          <h1>Add an Event</h1>
           <div> {/* Apply the custom styles */}
-            <EventCreateForm />
+            <EventCreateFormCopy 
+              getFreshForm={getFreshForm}
+            />
           </div>
             {
          events.map((event, index) => (
@@ -73,12 +82,10 @@ const Admin = () => {
             location={event.location}
             bandUrl={event.bandUrl}
             veneueUrl={event.veneueUrl}
+            image={event.image}
+            key={event.id ? event.id : index}
 
           />
-          //  <div key={event.id ? event.id : index} >
-          //   <p >{event.title}</p>
-          //    <p>{event.subTitle}</p>
-          //  </div>
          ))
        }
         </CardContent>

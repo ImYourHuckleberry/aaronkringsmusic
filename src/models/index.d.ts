@@ -23,6 +23,7 @@ type EagerEvent = {
   readonly location?: string | null;
   readonly veneueUrl?: string | null;
   readonly bandUrl?: string | null;
+  readonly image?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -41,6 +42,7 @@ type LazyEvent = {
   readonly location?: string | null;
   readonly veneueUrl?: string | null;
   readonly bandUrl?: string | null;
+  readonly image?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
