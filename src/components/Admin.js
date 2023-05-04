@@ -34,6 +34,7 @@ const Admin = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [editEventKey, setEditEventKey] = useState("null")
 
+  console.log("admin render")
   useEffect(() => {
     const checkAdminStatus = async () => {
       try {
@@ -52,7 +53,7 @@ const Admin = () => {
 
   useEffect(() => {
     fetchEvents()
-  }, [events])
+  }, [])
 
   const getFreshForm = () => {
     setFormKey((prevKey) => prevKey + 1);
