@@ -1,17 +1,10 @@
-/***************************************************************************
- * The contents of this file were generated with Amplify Studio.           *
- * Please refrain from making any modifications to this file.              *
- * Any changes to this file will be overwritten when running amplify pull. *
- **************************************************************************/
-
-/* eslint-disable */
 import * as React from "react";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Event } from "../models";
-import { fetchByPath, validateField } from "./utils";
-import { DataStore } from "aws-amplify";
-export default function EventUpdateForm(props) {
+import { fetchByPath, validateField } from "../ui-components/utils";
+import { Storage, DataStore } from "aws-amplify";
+export default function EventUpdateFormCopy(props) {
   const {
     id: idProp,
     event: eventModelProp,
@@ -21,6 +14,7 @@ export default function EventUpdateForm(props) {
     onValidate,
     onChange,
     overrides,
+    handleEditSubmission,
     ...rest
   } = props;
   const initialValues = {
@@ -33,6 +27,7 @@ export default function EventUpdateForm(props) {
     veneueUrl: "",
     bandUrl: "",
     image: "",
+    imageFile:""
   };
   const [date, setDate] = React.useState(initialValues.date);
   const [time, setTime] = React.useState(initialValues.time);
@@ -43,6 +38,8 @@ export default function EventUpdateForm(props) {
   const [veneueUrl, setVeneueUrl] = React.useState(initialValues.veneueUrl);
   const [bandUrl, setBandUrl] = React.useState(initialValues.bandUrl);
   const [image, setImage] = React.useState(initialValues.image);
+  const [currentImage, setCurrentImage] = React.useState(initialValues.image)
+  const [imageFile, setImageFile] = React.useState(initialValues.imageFile);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = eventRecord
@@ -57,6 +54,7 @@ export default function EventUpdateForm(props) {
     setVeneueUrl(cleanValues.veneueUrl);
     setBandUrl(cleanValues.bandUrl);
     setImage(cleanValues.image);
+    setImageFile(cleanValues.imageFile)
     setErrors({});
   };
   const [eventRecord, setEventRecord] = React.useState(eventModelProp);
@@ -65,6 +63,7 @@ export default function EventUpdateForm(props) {
       const record = idProp
         ? await DataStore.query(Event, idProp)
         : eventModelProp;
+    console.log(record)
       setEventRecord(record);
     };
     queryData();
@@ -80,6 +79,7 @@ export default function EventUpdateForm(props) {
     veneueUrl: [{ type: "URL" }],
     bandUrl: [{ type: "URL" }],
     image: [],
+    imageFile: []
   };
   const runValidationTasks = async (
     fieldName,
@@ -105,6 +105,7 @@ export default function EventUpdateForm(props) {
       columnGap="15px"
       padding="20px"
       onSubmit={async (event) => {
+        console.log("submit")
         event.preventDefault();
         let modelFields = {
           date,
@@ -138,7 +139,21 @@ export default function EventUpdateForm(props) {
         }
         if (onSubmit) {
           modelFields = onSubmit(modelFields);
+          
         }
+        if (imageFile) {
+                    try {
+                        const imageKey = `images/${imageFile.name}`;
+                        await Storage.put(imageKey, imageFile, {
+                            contentDisposition: "view"
+                        });
+                        setImage(imageKey)
+                        modelFields.image = imageKey;
+
+                    } catch (err) {
+                        console.log(err)
+                    }
+                }
         try {
           Object.entries(modelFields).forEach(([key, value]) => {
             if (typeof value === "string" && value.trim() === "") {
@@ -154,15 +169,17 @@ export default function EventUpdateForm(props) {
             onSuccess(modelFields);
           }
         } catch (err) {
+            console.log(err)
           if (onError) {
             onError(modelFields, err.message);
           }
         }
+        handleEditSubmission()
       }}
       {...getOverrideProps(overrides, "EventUpdateForm")}
       {...rest}
     >
-      <TextField
+              <TextField
         label="Date"
         isRequired={false}
         isReadOnly={false}
@@ -195,6 +212,7 @@ export default function EventUpdateForm(props) {
         hasError={errors.date?.hasError}
         {...getOverrideProps(overrides, "date")}
       ></TextField>
+    
       <TextField
         label="Time"
         isRequired={false}
@@ -420,52 +438,39 @@ export default function EventUpdateForm(props) {
         hasError={errors.bandUrl?.hasError}
         {...getOverrideProps(overrides, "bandUrl")}
       ></TextField>
-      <TextField
-        label="Image"
-        isRequired={false}
-        isReadOnly={false}
-        value={image}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              date,
-              time,
-              title,
-              subTitle,
-              extraInfo,
-              location,
-              veneueUrl,
-              bandUrl,
-              image: value,
-            };
-            const result = onChange(modelFields);
-            value = result?.image ?? value;
-          }
-          if (errors.image?.hasError) {
-            runValidationTasks("image", value);
-          }
-          setImage(value);
-        }}
-        onBlur={() => runValidationTasks("image", image)}
-        errorMessage={errors.image?.errorMessage}
-        hasError={errors.image?.hasError}
-        {...getOverrideProps(overrides, "image")}
-      ></TextField>
+  <TextField
+                label="Image"
+                isRequired={false}
+                isReadOnly={false}
+                type="file"
+                accept="image/*"
+                onChange={(e) => {
+                    if (e.target.files.length > 0) {
+                        console.log(e.target.files)
+                        setImageFile(e.target.files[0]);
+                        setCurrentImage(e.target.files[0].name)
+                        setImage(""); // Clear the image text value
+                    } else {
+                        setImageFile(null);
+                        setImage(""); // Clear the image text value
+                    }
+                }}
+                {...getOverrideProps(overrides, "image")}
+            />
+            <div>Current File: {image || imageFile.name}</div>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
       >
-        <Button
-          children="Reset"
-          type="reset"
+      <Button
           onClick={(event) => {
             event.preventDefault();
             resetStateValues();
+            handleEditSubmission()
           }}
           isDisabled={!(idProp || eventModelProp)}
           {...getOverrideProps(overrides, "ResetButton")}
-        ></Button>
+        >Cancel</Button>
         <Flex
           gap="15px"
           {...getOverrideProps(overrides, "RightAlignCTASubFlex")}

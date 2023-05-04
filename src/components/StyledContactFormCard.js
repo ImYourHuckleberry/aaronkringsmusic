@@ -45,7 +45,6 @@ const StyledContactFormCard = () => {
   const [formKey, setFormKey] = React.useState(0);
 
   const handleSubmit = async (event) => {
-    console.log("my handlesubmit is being hit")
     const Name = event.Name
     const Email = event.Email
     const Phone = event.Phone
