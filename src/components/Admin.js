@@ -47,13 +47,10 @@ const Admin = () => {
         console.log('Error:', error);
         // Handle error scenario
       }
+      fetchEvents()
     };
     checkAdminStatus();
   }, []);
-
-  useEffect(() => {
-    fetchEvents()
-  }, [])
 
   const getFreshForm = () => {
     setFormKey((prevKey) => prevKey + 1);
@@ -62,11 +59,13 @@ const Admin = () => {
 
   async function fetchEvents() {
     try {
-      const eventData = await API.graphql(graphqlOperation(listEvents))
-      const events = eventData.data.listEvents.items
+      const eventData = await API.graphql(graphqlOperation(listEvents));
+      const events = [...eventData.data.listEvents.items]; // Create a new array with the updated content
       events.sort((a, b) => new Date(a.date) - new Date(b.date));
-      setEvents(events)
-    } catch (err) { console.log('error fetching events') }
+      setEvents(events);
+    } catch (err) {
+      console.log('error fetching events');
+    }
   }
 
   const handleEdit = (event) => {
@@ -83,7 +82,7 @@ const Admin = () => {
         id: event.id,
         _version: event._version
       };
-      
+
       await API.graphql(graphqlOperation(deleteEvent, { input }));
       fetchEvents();
     } catch (error) {
