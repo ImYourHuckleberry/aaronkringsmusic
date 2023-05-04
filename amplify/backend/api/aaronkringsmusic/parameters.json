@@ -2,5 +2,11 @@
   "AppSyncApiName": "aaronkringsmusic",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
-  "AuthModeLastUpdated": "2023-04-28T20:01:44.148Z"
+  "AuthModeLastUpdated": "2023-05-04T14:51:23.924Z",
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authaaronkringsmusic",
+      "Outputs.UserPoolId"
+    ]
+  }
 }
