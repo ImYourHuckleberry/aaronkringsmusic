@@ -1,35 +1,20 @@
 {
   "api": {
     "aaronkringsmusic": {
-      "dependsOn": [
-        {
-          "attributes": [
-            "UserPoolId"
-          ],
-          "category": "auth",
-          "resourceName": "aaronkringsmusic"
-        }
-      ],
+      "dependsOn": [],
       "output": {
         "authConfig": {
           "additionalAuthenticationProviders": [
-            {
-              "apiKeyConfig": {
-                "apiKeyExpirationDate": "2024-05-03T14:51:23.141Z",
-                "apiKeyExpirationDays": 365,
-                "description": "keycreatedforamplifyapp"
-              },
-              "authenticationType": "API_KEY"
-            },
             {
               "authenticationType": "AWS_IAM"
             }
           ],
           "defaultAuthentication": {
-            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-            "userPoolConfig": {
-              "userPoolId": "authaaronkringsmusic"
-            }
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 30,
+              "description": "api key description"
+            },
+            "authenticationType": "API_KEY"
           }
         }
       },

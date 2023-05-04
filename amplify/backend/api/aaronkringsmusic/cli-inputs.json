@@ -4,16 +4,11 @@
     "apiName": "aaronkringsmusic",
     "serviceName": "AppSync",
     "defaultAuthType": {
-      "mode": "AMAZON_COGNITO_USER_POOLS",
-      "cognitoUserPoolId": "authaaronkringsmusic"
+      "mode": "API_KEY",
+      "keyDescription": "api key description",
+      "expirationTime": 30
     },
     "additionalAuthTypes": [
-      {
-        "mode": "API_KEY",
-        "expirationTime": 365,
-        "apiKeyExpirationDate": "2024-05-03T14:51:23.141Z",
-        "keyDescription": "keycreatedforamplifyapp"
-      },
       {
         "mode": "AWS_IAM"
       }

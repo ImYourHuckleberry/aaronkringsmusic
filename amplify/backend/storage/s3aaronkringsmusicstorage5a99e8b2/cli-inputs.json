@@ -4,11 +4,11 @@
   "policyUUID": "fa7e96ae",
   "storageAccess": "authAndGuest",
   "guestAccess": [
-    "READ"
+    "READ",
+    "CREATE_AND_UPDATE"
   ],
   "authAccess": [
     "CREATE_AND_UPDATE",
-    "READ",
-    "DELETE"
+    "READ"
   ]
 }

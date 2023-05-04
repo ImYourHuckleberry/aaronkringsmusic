@@ -2,8 +2,11 @@ const aws = require('aws-sdk')
 const ses = new aws.SES()
 
 exports.handler = async (event) => {
+  console.log("first hit")
   for (const streamedItem of event.Records) {
     if (streamedItem.eventName === 'INSERT') {
+      console.log("this is inserting")
+      console.log(streamedItem.dynamodb.NewImage)
       //pull off items from stream
       const candidateName = streamedItem.dynamodb.NewImage.Name.S
       const candidateEmail = streamedItem.dynamodb.NewImage.Email.S
