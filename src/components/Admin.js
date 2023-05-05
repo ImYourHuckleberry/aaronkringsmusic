@@ -151,9 +151,10 @@ const Admin = () => {
           </div>
           {
             events.filter(event => !event._deleted).map((event, index) => (
-              <div key={event.id}>
-
+              console.log(event),
+              <div key={event.id} className="admin-container">
                 <EventCard
+                  index={index}
                   time={event.time}
                   date={event.date}
                   title={event.title}
@@ -164,11 +165,14 @@ const Admin = () => {
                   veneueUrl={event.veneueUrl}
                   image={event.image}
                   key={event.id ? event.id : index}
+                  ticketAvailability={event.ticketAvailability}
+                  ticketPrice={event.ticketPrice}
+                  googleMapsUrl={event.googleMapsUrl}
                 />
-                <button key={"edit_button_" + index} onClick={() => handleEdit(event)}>edit the card above</button>
+                <div><button key={"edit_button_" + index} onClick={() => handleEdit(event)}>edit the card above</button>
 
-                <button key={"delete_button_" + index} onClick={() => deleteEventById(event)}>DELETE the card above</button>
-                <br></br><br></br>
+<button key={"delete_button_" + index} onClick={() => deleteEventById(event)}>DELETE the card above</button></div>
+                
               </div>
 
             ))

@@ -10,20 +10,6 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "date": {
-                    "name": "date",
-                    "isArray": false,
-                    "type": "AWSDate",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "time": {
-                    "name": "time",
-                    "isArray": false,
-                    "type": "AWSTime",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "title": {
                     "name": "title",
                     "isArray": false,
@@ -42,6 +28,20 @@ export const schema = {
                     "name": "extraInfo",
                     "isArray": false,
                     "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "date": {
+                    "name": "date",
+                    "isArray": false,
+                    "type": "AWSDate",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "time": {
+                    "name": "time",
+                    "isArray": false,
+                    "type": "AWSTime",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -70,6 +70,39 @@ export const schema = {
                     "name": "image",
                     "isArray": false,
                     "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "otherBands": {
+                    "name": "otherBands",
+                    "isArray": true,
+                    "type": {
+                        "nonModel": "OtherBands"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true
+                },
+                "ticketPrice": {
+                    "name": "ticketPrice",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "ticketAvailability": {
+                    "name": "ticketAvailability",
+                    "isArray": false,
+                    "type": {
+                        "enum": "TicketAvailability"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "googleMapsUrl": {
+                    "name": "googleMapsUrl",
+                    "isArray": false,
+                    "type": "AWSURL",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -207,6 +240,15 @@ export const schema = {
         }
     },
     "enums": {
+        "TicketAvailability": {
+            "name": "TicketAvailability",
+            "values": [
+                "ON_SALE",
+                "SOLD_OUT",
+                "COMING_SOON",
+                "FREE"
+            ]
+        },
         "LessonTypes": {
             "name": "LessonTypes",
             "values": [
@@ -215,7 +257,27 @@ export const schema = {
             ]
         }
     },
-    "nonModels": {},
+    "nonModels": {
+        "OtherBands": {
+            "name": "OtherBands",
+            "fields": {
+                "name": {
+                    "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "webSite": {
+                    "name": "webSite",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            }
+        }
+    },
     "codegenVersion": "3.4.2",
-    "version": "ceb957f1186ffa4f4c1ce8d0a616c15b"
+    "version": "d2205ba58280b395c0f0e53bc0e1875d"
 };

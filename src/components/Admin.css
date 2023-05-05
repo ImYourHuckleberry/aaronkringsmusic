@@ -4,8 +4,11 @@
     align-items: center;
     justify-content: center;
     margin-top: 1rem;
-    padding-top: 2vh;
     /* Start the cards 2/3 of the way down the page */
-    padding-bottom: 20vh;
   
+  }
+
+  .event-actions{
+    display: flex;
+    justify-content: space-around;
   }

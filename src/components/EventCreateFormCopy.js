@@ -1,9 +1,10 @@
 import * as React from "react";
-import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
+import { Button, Flex, Grid, SelectField,TextField } from "@aws-amplify/ui-react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Event } from "../models";
 import { fetchByPath, validateField } from "../ui-components/utils";
 import { Storage, DataStore } from "aws-amplify";
+
 const EventCreateFormCopy = (props) => {
     const {
         clearOnSuccess = true,
@@ -28,7 +29,10 @@ const EventCreateFormCopy = (props) => {
         veneueUrl: "",
         bandUrl: "",
         image: "",
-        imageFile: ""
+        imageFile: "",
+        ticketPrice: "",
+        ticketAvailability: "",
+        googleMapsUrl:"",
     };
     const [date, setDate] = React.useState(initialValues.date);
     const [time, setTime] = React.useState(initialValues.time);
@@ -41,8 +45,13 @@ const EventCreateFormCopy = (props) => {
     const [image, setImage] = React.useState(initialValues.image);
     const [errors, setErrors] = React.useState({});
     const [imageFile, setImageFile] = React.useState(initialValues.imageFile);
-
-
+    const [ticketPrice, setTicketPrice] = React.useState(
+        initialValues.ticketPrice
+      );
+      const [ticketAvailability, setTicketAvailability] = React.useState(
+        initialValues.ticketAvailability
+      );
+    const [googleMapsUrl, setGoogleMapsUrl] = React.useState(initialValues.googleMapsUrl)
     const resetStateValues = () => {
         console.log("resetting")
         setImageFile(initialValues.imageFile);
@@ -55,6 +64,9 @@ const EventCreateFormCopy = (props) => {
         setVeneueUrl(initialValues.veneueUrl);
         setBandUrl(initialValues.bandUrl);
         setImage(initialValues.image);
+        setTicketPrice(initialValues.ticketPrice);
+        setTicketAvailability(initialValues.ticketAvailability);
+        setGoogleMapsUrl(initialValues.googleMapsUrl)
         setErrors({});
         // Clear the image file state by setting it to null
     };
@@ -68,7 +80,10 @@ const EventCreateFormCopy = (props) => {
         veneueUrl: [{ type: "URL" }],
         bandUrl: [{ type: "URL" }],
         image: [],
-        imageFile: []
+        imageFile: [],
+        ticketPrice: [],
+        ticketAvailability: [],
+        googleMapsUrl: [{ type: "URL" }]
     };
     const runValidationTasks = async (
         fieldName,
@@ -105,6 +120,9 @@ const EventCreateFormCopy = (props) => {
                     veneueUrl,
                     bandUrl,
                     image,
+                    ticketPrice,
+          ticketAvailability,
+          googleMapsUrl,
                 };
                 const validationResponses = await Promise.all(
                     Object.keys(validations).reduce((promises, fieldName) => {
@@ -185,6 +203,9 @@ const EventCreateFormCopy = (props) => {
                             veneueUrl,
                             bandUrl,
                             image,
+                            ticketPrice,
+              ticketAvailability,
+              googleMapsUrl
                         };
                         const result = onChange(modelFields);
                         value = result?.date ?? value;
@@ -218,6 +239,9 @@ const EventCreateFormCopy = (props) => {
                             veneueUrl,
                             bandUrl,
                             image,
+                            ticketPrice,
+              ticketAvailability,
+              googleMapsUrl
                         };
                         const result = onChange(modelFields);
                         value = result?.time ?? value;
@@ -250,6 +274,9 @@ const EventCreateFormCopy = (props) => {
                             veneueUrl,
                             bandUrl,
                             image,
+                            ticketPrice,
+              ticketAvailability,
+              googleMapsUrl
                         };
                         const result = onChange(modelFields);
                         value = result?.title ?? value;
@@ -282,6 +309,9 @@ const EventCreateFormCopy = (props) => {
                             veneueUrl,
                             bandUrl,
                             image,
+                            ticketPrice,
+              ticketAvailability,
+              googleMapsUrl
                         };
                         const result = onChange(modelFields);
                         value = result?.subTitle ?? value;
@@ -314,6 +344,9 @@ const EventCreateFormCopy = (props) => {
                             veneueUrl,
                             bandUrl,
                             image,
+                            ticketPrice,
+              ticketAvailability,
+              googleMapsUrl
                         };
                         const result = onChange(modelFields);
                         value = result?.extraInfo ?? value;
@@ -346,6 +379,9 @@ const EventCreateFormCopy = (props) => {
                             veneueUrl,
                             bandUrl,
                             image,
+                            ticketPrice,
+              ticketAvailability,
+              googleMapsUrl
                         };
                         const result = onChange(modelFields);
                         value = result?.location ?? value;
@@ -378,6 +414,9 @@ const EventCreateFormCopy = (props) => {
                             veneueUrl: value,
                             bandUrl,
                             image,
+                            ticketPrice,
+              ticketAvailability,
+              googleMapsUrl
                         };
                         const result = onChange(modelFields);
                         value = result?.veneueUrl ?? value;
@@ -410,6 +449,9 @@ const EventCreateFormCopy = (props) => {
                             veneueUrl,
                             bandUrl: value,
                             image,
+                            ticketPrice,
+              ticketAvailability,
+              googleMapsUrl
                         };
                         const result = onChange(modelFields);
                         value = result?.bandUrl ?? value;
@@ -442,7 +484,134 @@ const EventCreateFormCopy = (props) => {
                 }}
                 {...getOverrideProps(overrides, "image")}
             />
-
+<TextField
+        label="Ticket price"
+        isRequired={false}
+        isReadOnly={false}
+        value={ticketPrice}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              title,
+              subTitle,
+              extraInfo,
+              date,
+              time,
+              location,
+              veneueUrl,
+              bandUrl,
+              image,
+              ticketPrice: value,
+              ticketAvailability,
+              googleMapsUrl
+            };
+            const result = onChange(modelFields);
+            value = result?.ticketPrice ?? value;
+          }
+          if (errors.ticketPrice?.hasError) {
+            runValidationTasks("ticketPrice", value);
+          }
+          setTicketPrice(value);
+        }}
+        onBlur={() => runValidationTasks("ticketPrice", ticketPrice)}
+        errorMessage={errors.ticketPrice?.errorMessage}
+        hasError={errors.ticketPrice?.hasError}
+        {...getOverrideProps(overrides, "ticketPrice")}
+      ></TextField>
+      <SelectField
+        label="Ticket availability"
+        placeholder="Please select an option"
+        isDisabled={false}
+        value={ticketAvailability}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              title,
+              subTitle,
+              extraInfo,
+              date,
+              time,
+              location,
+              veneueUrl,
+              bandUrl,
+              image,
+              ticketPrice,
+              ticketAvailability: value,
+              googleMapsUrl
+            };
+            const result = onChange(modelFields);
+            value = result?.ticketAvailability ?? value;
+          }
+          if (errors.ticketAvailability?.hasError) {
+            runValidationTasks("ticketAvailability", value);
+          }
+          setTicketAvailability(value);
+        }}
+        onBlur={() =>
+          runValidationTasks("ticketAvailability", ticketAvailability)
+        }
+        errorMessage={errors.ticketAvailability?.errorMessage}
+        hasError={errors.ticketAvailability?.hasError}
+        {...getOverrideProps(overrides, "ticketAvailability")}
+      >
+        <option
+          children="On sale"
+          value="ON_SALE"
+          {...getOverrideProps(overrides, "ticketAvailabilityoption0")}
+        ></option>
+        <option
+          children="Sold out"
+          value="SOLD_OUT"
+          {...getOverrideProps(overrides, "ticketAvailabilityoption1")}
+        ></option>
+        <option
+          children="Coming soon"
+          value="COMING_SOON"
+          {...getOverrideProps(overrides, "ticketAvailabilityoption2")}
+        ></option>
+        <option
+          children="Free"
+          value="FREE"
+          {...getOverrideProps(overrides, "ticketAvailabilityoption3")}
+        ></option>
+      </SelectField>
+      <TextField
+        label="Google maps url"
+        isRequired={false}
+        isReadOnly={false}
+        value={googleMapsUrl}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              title,
+              subTitle,
+              extraInfo,
+              date,
+              time,
+              location,
+              veneueUrl,
+              bandUrl,
+              image,
+              ticketPrice,
+              ticketAvailability,
+              googleMapsUrl: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.googleMapsUrl ?? value;
+          }
+          if (errors.googleMapsUrl?.hasError) {
+            runValidationTasks("googleMapsUrl", value);
+          }
+          setGoogleMapsUrl(value);
+        }}
+        onBlur={() => runValidationTasks("googleMapsUrl", googleMapsUrl)}
+        errorMessage={errors.googleMapsUrl?.errorMessage}
+        hasError={errors.googleMapsUrl?.hasError}
+        {...getOverrideProps(overrides, "googleMapsUrl")}
+      ></TextField>
             <Flex
                 justifyContent="space-between"
                 {...getOverrideProps(overrides, "CTAFlex")}

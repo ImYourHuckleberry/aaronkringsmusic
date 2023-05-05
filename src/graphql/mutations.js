@@ -8,15 +8,22 @@ export const createEvent = /* GraphQL */ `
   ) {
     createEvent(input: $input, condition: $condition) {
       id
-      date
-      time
       title
       subTitle
       extraInfo
+      date
+      time
       location
       veneueUrl
       bandUrl
       image
+      otherBands {
+        name
+        webSite
+      }
+      ticketPrice
+      ticketAvailability
+      googleMapsUrl
       createdAt
       updatedAt
       _version
@@ -32,15 +39,22 @@ export const updateEvent = /* GraphQL */ `
   ) {
     updateEvent(input: $input, condition: $condition) {
       id
-      date
-      time
       title
       subTitle
       extraInfo
+      date
+      time
       location
       veneueUrl
       bandUrl
       image
+      otherBands {
+        name
+        webSite
+      }
+      ticketPrice
+      ticketAvailability
+      googleMapsUrl
       createdAt
       updatedAt
       _version
@@ -56,15 +70,22 @@ export const deleteEvent = /* GraphQL */ `
   ) {
     deleteEvent(input: $input, condition: $condition) {
       id
-      date
-      time
       title
       subTitle
       extraInfo
+      date
+      time
       location
       veneueUrl
       bandUrl
       image
+      otherBands {
+        name
+        webSite
+      }
+      ticketPrice
+      ticketAvailability
+      googleMapsUrl
       createdAt
       updatedAt
       _version

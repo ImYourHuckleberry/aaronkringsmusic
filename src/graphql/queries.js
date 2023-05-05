@@ -5,15 +5,22 @@ export const getEvent = /* GraphQL */ `
   query GetEvent($id: ID!) {
     getEvent(id: $id) {
       id
-      date
-      time
       title
       subTitle
       extraInfo
+      date
+      time
       location
       veneueUrl
       bandUrl
       image
+      otherBands {
+        name
+        webSite
+      }
+      ticketPrice
+      ticketAvailability
+      googleMapsUrl
       createdAt
       updatedAt
       _version
@@ -31,15 +38,22 @@ export const listEvents = /* GraphQL */ `
     listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        date
-        time
         title
         subTitle
         extraInfo
+        date
+        time
         location
         veneueUrl
         bandUrl
         image
+        otherBands {
+          name
+          webSite
+        }
+        ticketPrice
+        ticketAvailability
+        googleMapsUrl
         createdAt
         updatedAt
         _version
@@ -66,15 +80,22 @@ export const syncEvents = /* GraphQL */ `
     ) {
       items {
         id
-        date
-        time
         title
         subTitle
         extraInfo
+        date
+        time
         location
         veneueUrl
         bandUrl
         image
+        otherBands {
+          name
+          webSite
+        }
+        ticketPrice
+        ticketAvailability
+        googleMapsUrl
         createdAt
         updatedAt
         _version

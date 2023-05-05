@@ -5,15 +5,22 @@ export const onCreateEvent = /* GraphQL */ `
   subscription OnCreateEvent($filter: ModelSubscriptionEventFilterInput) {
     onCreateEvent(filter: $filter) {
       id
-      date
-      time
       title
       subTitle
       extraInfo
+      date
+      time
       location
       veneueUrl
       bandUrl
       image
+      otherBands {
+        name
+        webSite
+      }
+      ticketPrice
+      ticketAvailability
+      googleMapsUrl
       createdAt
       updatedAt
       _version
@@ -26,15 +33,22 @@ export const onUpdateEvent = /* GraphQL */ `
   subscription OnUpdateEvent($filter: ModelSubscriptionEventFilterInput) {
     onUpdateEvent(filter: $filter) {
       id
-      date
-      time
       title
       subTitle
       extraInfo
+      date
+      time
       location
       veneueUrl
       bandUrl
       image
+      otherBands {
+        name
+        webSite
+      }
+      ticketPrice
+      ticketAvailability
+      googleMapsUrl
       createdAt
       updatedAt
       _version
@@ -47,15 +61,22 @@ export const onDeleteEvent = /* GraphQL */ `
   subscription OnDeleteEvent($filter: ModelSubscriptionEventFilterInput) {
     onDeleteEvent(filter: $filter) {
       id
-      date
-      time
       title
       subTitle
       extraInfo
+      date
+      time
       location
       veneueUrl
       bandUrl
       image
+      otherBands {
+        name
+        webSite
+      }
+      ticketPrice
+      ticketAvailability
+      googleMapsUrl
       createdAt
       updatedAt
       _version
