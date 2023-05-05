@@ -100,7 +100,7 @@ const EventCard = ({
   const formattedTicketAvailability = getTicketAvailability(ticketAvailability)
   const colorClass = getColorClass(index)
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ width: 345 }}>
 
       <CardContent className={colorClass}>
         <Typography variant="h6"><strong>{formattedTicketAvailability}</strong></Typography>
@@ -138,8 +138,7 @@ const EventCard = ({
           {extraInfo}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
+      <CardActions className="event-actions">
         <Button size="small" onClick={() => { openNewTab(bandUrl) }}>Learn More</Button>
         <Button size="small" onClick={() => { openNewTab(googleMapsUrl) }}>Map</Button>
         <FacebookShareButton quote={`${title}: live at ${location}`} url="https://www.aaronkrings.com/"><FacebookIcon size={32} round={true} /></FacebookShareButton>
