@@ -30,6 +30,7 @@ export default function EventUpdateFormCopy(props) {
     imageFile:"",
     ticketPrice: "",
     ticketAvailability: "",
+    googleMapsUrl:"",
   };
   const [date, setDate] = React.useState(initialValues.date);
   const [time, setTime] = React.useState(initialValues.time);
@@ -48,6 +49,7 @@ export default function EventUpdateFormCopy(props) {
   const [ticketAvailability, setTicketAvailability] = React.useState(
     initialValues.ticketAvailability
   );
+  const [googleMapsUrl, setGoogleMapsUrl] = React.useState(initialValues.googleMapsUrl)
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = eventRecord
@@ -89,7 +91,8 @@ export default function EventUpdateFormCopy(props) {
     image: [],
     imageFile: [],
     ticketPrice: [],
-    ticketAvailability: [],
+    ticketAvailability: [{ type: "URL" }],
+    googleMapsUrl:[]
   };
   const runValidationTasks = async (
     fieldName,
@@ -129,6 +132,7 @@ export default function EventUpdateFormCopy(props) {
           image,
           ticketPrice,
           ticketAvailability,
+          googleMapsUrl,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -212,6 +216,7 @@ export default function EventUpdateFormCopy(props) {
               image,
               ticketPrice,
           ticketAvailability,
+          googleMapsUrl
             };
             const result = onChange(modelFields);
             value = result?.date ?? value;
@@ -248,6 +253,7 @@ export default function EventUpdateFormCopy(props) {
               image,
               ticketPrice,
           ticketAvailability,
+          googleMapsUrl
             };
             const result = onChange(modelFields);
             value = result?.time ?? value;
@@ -282,6 +288,7 @@ export default function EventUpdateFormCopy(props) {
               image,
               ticketPrice,
           ticketAvailability,
+          googleMapsUrl
             };
             const result = onChange(modelFields);
             value = result?.title ?? value;
@@ -316,6 +323,7 @@ export default function EventUpdateFormCopy(props) {
               image,
               ticketPrice,
           ticketAvailability,
+          googleMapsUrl
             };
             const result = onChange(modelFields);
             value = result?.subTitle ?? value;
@@ -350,6 +358,7 @@ export default function EventUpdateFormCopy(props) {
               image,
               ticketPrice,
           ticketAvailability,
+          googleMapsUrl
             };
             const result = onChange(modelFields);
             value = result?.extraInfo ?? value;
@@ -384,6 +393,7 @@ export default function EventUpdateFormCopy(props) {
               image,
               ticketPrice,
           ticketAvailability,
+          googleMapsUrl
             };
             const result = onChange(modelFields);
             value = result?.location ?? value;
@@ -418,6 +428,7 @@ export default function EventUpdateFormCopy(props) {
               image,
               ticketPrice,
           ticketAvailability,
+          googleMapsUrl
             };
             const result = onChange(modelFields);
             value = result?.veneueUrl ?? value;
@@ -452,6 +463,7 @@ export default function EventUpdateFormCopy(props) {
               image,
               ticketPrice,
           ticketAvailability,
+          googleMapsUrl
             };
             const result = onChange(modelFields);
             value = result?.bandUrl ?? value;
@@ -506,6 +518,7 @@ export default function EventUpdateFormCopy(props) {
               image,
               ticketPrice: value,
               ticketAvailability,
+              googleMapsUrl
             };
             const result = onChange(modelFields);
             value = result?.ticketPrice ?? value;
@@ -540,6 +553,7 @@ export default function EventUpdateFormCopy(props) {
               image,
               ticketPrice,
               ticketAvailability: value,
+              googleMapsUrl
             };
             const result = onChange(modelFields);
             value = result?.ticketAvailability ?? value;
@@ -577,6 +591,41 @@ export default function EventUpdateFormCopy(props) {
           {...getOverrideProps(overrides, "ticketAvailabilityoption3")}
         ></option>
       </SelectField>
+      <TextField
+        label="Google maps url"
+        isRequired={false}
+        isReadOnly={false}
+        value={googleMapsUrl}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              title,
+              subTitle,
+              extraInfo,
+              date,
+              time,
+              location,
+              veneueUrl,
+              bandUrl,
+              image,
+              ticketPrice,
+              ticketAvailability,
+              googleMapsUrl: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.googleMapsUrl ?? value;
+          }
+          if (errors.googleMapsUrl?.hasError) {
+            runValidationTasks("googleMapsUrl", value);
+          }
+          setGoogleMapsUrl(value);
+        }}
+        onBlur={() => runValidationTasks("googleMapsUrl", googleMapsUrl)}
+        errorMessage={errors.googleMapsUrl?.errorMessage}
+        hasError={errors.googleMapsUrl?.hasError}
+        {...getOverrideProps(overrides, "googleMapsUrl")}
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

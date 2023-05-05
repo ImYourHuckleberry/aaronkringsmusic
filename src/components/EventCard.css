@@ -1,16 +1,8 @@
-.event-column {
-  display: flex;
-  justify-content: space-between;
+.ticket-status-odd{
+  background-color: rgb(11, 11, 160);
+  color: rgb(226, 152, 15);
 }
-
-.last-column {
-  align-items: flex-end;
-}
-
-
-.image {
-  box-sizing: border-box;
-  max-height: 400px;
-  min-width: 50%;
-  max-width: 50%;
+.ticket-status-even{
+  color: rgb(11, 11, 160);
+  background-color: rgb(226, 152, 15);
 }

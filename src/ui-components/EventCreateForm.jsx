@@ -40,6 +40,7 @@ export default function EventCreateForm(props) {
     image: "",
     ticketPrice: "",
     ticketAvailability: "",
+    googleMapsUrl: "",
   };
   const [title, setTitle] = React.useState(initialValues.title);
   const [subTitle, setSubTitle] = React.useState(initialValues.subTitle);
@@ -56,6 +57,9 @@ export default function EventCreateForm(props) {
   const [ticketAvailability, setTicketAvailability] = React.useState(
     initialValues.ticketAvailability
   );
+  const [googleMapsUrl, setGoogleMapsUrl] = React.useState(
+    initialValues.googleMapsUrl
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setTitle(initialValues.title);
@@ -69,6 +73,7 @@ export default function EventCreateForm(props) {
     setImage(initialValues.image);
     setTicketPrice(initialValues.ticketPrice);
     setTicketAvailability(initialValues.ticketAvailability);
+    setGoogleMapsUrl(initialValues.googleMapsUrl);
     setErrors({});
   };
   const validations = {
@@ -83,6 +88,7 @@ export default function EventCreateForm(props) {
     image: [],
     ticketPrice: [],
     ticketAvailability: [],
+    googleMapsUrl: [{ type: "URL" }],
   };
   const runValidationTasks = async (
     fieldName,
@@ -121,6 +127,7 @@ export default function EventCreateForm(props) {
           image,
           ticketPrice,
           ticketAvailability,
+          googleMapsUrl,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -186,6 +193,7 @@ export default function EventCreateForm(props) {
               image,
               ticketPrice,
               ticketAvailability,
+              googleMapsUrl,
             };
             const result = onChange(modelFields);
             value = result?.title ?? value;
@@ -220,6 +228,7 @@ export default function EventCreateForm(props) {
               image,
               ticketPrice,
               ticketAvailability,
+              googleMapsUrl,
             };
             const result = onChange(modelFields);
             value = result?.subTitle ?? value;
@@ -254,6 +263,7 @@ export default function EventCreateForm(props) {
               image,
               ticketPrice,
               ticketAvailability,
+              googleMapsUrl,
             };
             const result = onChange(modelFields);
             value = result?.extraInfo ?? value;
@@ -289,6 +299,7 @@ export default function EventCreateForm(props) {
               image,
               ticketPrice,
               ticketAvailability,
+              googleMapsUrl,
             };
             const result = onChange(modelFields);
             value = result?.date ?? value;
@@ -324,6 +335,7 @@ export default function EventCreateForm(props) {
               image,
               ticketPrice,
               ticketAvailability,
+              googleMapsUrl,
             };
             const result = onChange(modelFields);
             value = result?.time ?? value;
@@ -358,6 +370,7 @@ export default function EventCreateForm(props) {
               image,
               ticketPrice,
               ticketAvailability,
+              googleMapsUrl,
             };
             const result = onChange(modelFields);
             value = result?.location ?? value;
@@ -392,6 +405,7 @@ export default function EventCreateForm(props) {
               image,
               ticketPrice,
               ticketAvailability,
+              googleMapsUrl,
             };
             const result = onChange(modelFields);
             value = result?.veneueUrl ?? value;
@@ -426,6 +440,7 @@ export default function EventCreateForm(props) {
               image,
               ticketPrice,
               ticketAvailability,
+              googleMapsUrl,
             };
             const result = onChange(modelFields);
             value = result?.bandUrl ?? value;
@@ -460,6 +475,7 @@ export default function EventCreateForm(props) {
               image: value,
               ticketPrice,
               ticketAvailability,
+              googleMapsUrl,
             };
             const result = onChange(modelFields);
             value = result?.image ?? value;
@@ -494,6 +510,7 @@ export default function EventCreateForm(props) {
               image,
               ticketPrice: value,
               ticketAvailability,
+              googleMapsUrl,
             };
             const result = onChange(modelFields);
             value = result?.ticketPrice ?? value;
@@ -528,6 +545,7 @@ export default function EventCreateForm(props) {
               image,
               ticketPrice,
               ticketAvailability: value,
+              googleMapsUrl,
             };
             const result = onChange(modelFields);
             value = result?.ticketAvailability ?? value;
@@ -565,6 +583,41 @@ export default function EventCreateForm(props) {
           {...getOverrideProps(overrides, "ticketAvailabilityoption3")}
         ></option>
       </SelectField>
+      <TextField
+        label="Google maps url"
+        isRequired={false}
+        isReadOnly={false}
+        value={googleMapsUrl}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              title,
+              subTitle,
+              extraInfo,
+              date,
+              time,
+              location,
+              veneueUrl,
+              bandUrl,
+              image,
+              ticketPrice,
+              ticketAvailability,
+              googleMapsUrl: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.googleMapsUrl ?? value;
+          }
+          if (errors.googleMapsUrl?.hasError) {
+            runValidationTasks("googleMapsUrl", value);
+          }
+          setGoogleMapsUrl(value);
+        }}
+        onBlur={() => runValidationTasks("googleMapsUrl", googleMapsUrl)}
+        errorMessage={errors.googleMapsUrl?.errorMessage}
+        hasError={errors.googleMapsUrl?.hasError}
+        {...getOverrideProps(overrides, "googleMapsUrl")}
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

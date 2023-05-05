@@ -46,6 +46,7 @@ type EagerEvent = {
   readonly otherBands?: (OtherBands | null)[] | null;
   readonly ticketPrice?: string | null;
   readonly ticketAvailability?: TicketAvailability | keyof typeof TicketAvailability | null;
+  readonly googleMapsUrl?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -68,6 +69,7 @@ type LazyEvent = {
   readonly otherBands?: (OtherBands | null)[] | null;
   readonly ticketPrice?: string | null;
   readonly ticketAvailability?: TicketAvailability | keyof typeof TicketAvailability | null;
+  readonly googleMapsUrl?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

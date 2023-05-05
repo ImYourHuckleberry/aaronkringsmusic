@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Button, Card, CardMedia, CardContent, CardActions, Typography } from "@mui/material";
 import { Storage } from "aws-amplify";
+import { LocationOn } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
-import "./EventCard.css"; // Import the CSS file
+import "./EventCard.css"; // Import the CSS file;
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  TwitterShareButton,
+  TwitterIcon
+} from "react-share";
 
 const EventCard = ({
   time,
@@ -15,7 +22,9 @@ const EventCard = ({
   bandUrl,
   image,
   ticketPrice,
-  ticketAvailability
+  ticketAvailability,
+  googleMapsUrl,
+  index
 }) => {
   const [imageUrl, setImageUrl] = useState(null);
 
@@ -83,14 +92,18 @@ const EventCard = ({
     return dateObj.toLocaleDateString('en-US', options);
   };
 
+  const getColorClass=(index)=>{
+    return index % 2 === 0 ? "ticket-status-even" : "ticket-status-odd"
+  }
   const standardTime = convertToStandardTime(time);
   const formattedDate = formatDate(date);
   const formattedTicketAvailability = getTicketAvailability(ticketAvailability)
+  const colorClass = getColorClass(index)
   return (
     <Card sx={{ maxWidth: 345 }}>
 
-      <CardContent>
-        {formattedTicketAvailability}
+      <CardContent className={colorClass}>
+        <Typography variant="h6"><strong>{formattedTicketAvailability}</strong></Typography>
       </CardContent>
       <CardContent>
         <Typography>
@@ -98,6 +111,14 @@ const EventCard = ({
         </Typography>
         <Typography>
           {standardTime}
+        </Typography>
+        <Typography>
+          <a href={veneueUrl}>
+            {location}
+          </a>
+        </Typography>
+        <Typography>
+          ${ticketPrice}
         </Typography>
       </CardContent>
       <CardMedia
@@ -119,7 +140,10 @@ const EventCard = ({
       </CardContent>
       <CardActions>
         <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Button size="small" onClick={() => { openNewTab(bandUrl) }}>Learn More</Button>
+        <Button size="small" onClick={() => { openNewTab(googleMapsUrl) }}>Map</Button>
+        <FacebookShareButton quote={`${title}: live at ${location}`} url="https://www.aaronkrings.com/"><FacebookIcon size={32} round={true} /></FacebookShareButton>
+        <TwitterShareButton url="https://www.aaronkrings.com" title={`${title}: live at ${location}`} caption={subTitle}><TwitterIcon size={32} round={true}/></TwitterShareButton>
       </CardActions>
     </Card>
   )

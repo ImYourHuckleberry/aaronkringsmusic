@@ -99,6 +99,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "googleMapsUrl": {
+                    "name": "googleMapsUrl",
+                    "isArray": false,
+                    "type": "AWSURL",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -272,5 +279,5 @@ export const schema = {
         }
     },
     "codegenVersion": "3.4.2",
-    "version": "5d360d704c187dec30870d091210b600"
+    "version": "d2205ba58280b395c0f0e53bc0e1875d"
 };
