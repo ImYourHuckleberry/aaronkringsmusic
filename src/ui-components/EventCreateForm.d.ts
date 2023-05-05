@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, SelectFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 export declare type ValidationResponse = {
     hasError: boolean;
@@ -13,39 +13,45 @@ export declare type ValidationResponse = {
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type EventCreateFormInputValues = {
-    date?: string;
-    time?: string;
     title?: string;
     subTitle?: string;
     extraInfo?: string;
+    date?: string;
+    time?: string;
     location?: string;
     veneueUrl?: string;
     bandUrl?: string;
     image?: string;
+    ticketPrice?: string;
+    ticketAvailability?: string;
 };
 export declare type EventCreateFormValidationValues = {
-    date?: ValidationFunction<string>;
-    time?: ValidationFunction<string>;
     title?: ValidationFunction<string>;
     subTitle?: ValidationFunction<string>;
     extraInfo?: ValidationFunction<string>;
+    date?: ValidationFunction<string>;
+    time?: ValidationFunction<string>;
     location?: ValidationFunction<string>;
     veneueUrl?: ValidationFunction<string>;
     bandUrl?: ValidationFunction<string>;
     image?: ValidationFunction<string>;
+    ticketPrice?: ValidationFunction<string>;
+    ticketAvailability?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type EventCreateFormOverridesProps = {
     EventCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
-    date?: PrimitiveOverrideProps<TextFieldProps>;
-    time?: PrimitiveOverrideProps<TextFieldProps>;
     title?: PrimitiveOverrideProps<TextFieldProps>;
     subTitle?: PrimitiveOverrideProps<TextFieldProps>;
     extraInfo?: PrimitiveOverrideProps<TextFieldProps>;
+    date?: PrimitiveOverrideProps<TextFieldProps>;
+    time?: PrimitiveOverrideProps<TextFieldProps>;
     location?: PrimitiveOverrideProps<TextFieldProps>;
     veneueUrl?: PrimitiveOverrideProps<TextFieldProps>;
     bandUrl?: PrimitiveOverrideProps<TextFieldProps>;
     image?: PrimitiveOverrideProps<TextFieldProps>;
+    ticketPrice?: PrimitiveOverrideProps<TextFieldProps>;
+    ticketAvailability?: PrimitiveOverrideProps<SelectFieldProps>;
 } & EscapeHatchProps;
 export declare type EventCreateFormProps = React.PropsWithChildren<{
     overrides?: EventCreateFormOverridesProps | undefined | null;

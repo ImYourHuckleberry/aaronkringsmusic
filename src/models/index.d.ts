@@ -2,12 +2,31 @@ import { ModelInit, MutableModel, __modelMeta__, ManagedIdentifier } from "@aws-
 // @ts-ignore
 import { LazyLoading, LazyLoadingDisabled } from "@aws-amplify/datastore";
 
+export enum TicketAvailability {
+  ON_SALE = "ON_SALE",
+  SOLD_OUT = "SOLD_OUT",
+  COMING_SOON = "COMING_SOON",
+  FREE = "FREE"
+}
+
 export enum LessonTypes {
   IN_PERSON = "IN_PERSON",
   ONLINE = "ONLINE"
 }
 
+type EagerOtherBands = {
+  readonly name?: string | null;
+  readonly webSite?: string | null;
+}
 
+type LazyOtherBands = {
+  readonly name?: string | null;
+  readonly webSite?: string | null;
+}
+
+export declare type OtherBands = LazyLoading extends LazyLoadingDisabled ? EagerOtherBands : LazyOtherBands
+
+export declare const OtherBands: (new (init: ModelInit<OtherBands>) => OtherBands)
 
 type EagerEvent = {
   readonly [__modelMeta__]: {
@@ -15,15 +34,18 @@ type EagerEvent = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly date?: string | null;
-  readonly time?: string | null;
   readonly title?: string | null;
   readonly subTitle?: string | null;
   readonly extraInfo?: string | null;
+  readonly date?: string | null;
+  readonly time?: string | null;
   readonly location?: string | null;
   readonly veneueUrl?: string | null;
   readonly bandUrl?: string | null;
   readonly image?: string | null;
+  readonly otherBands?: (OtherBands | null)[] | null;
+  readonly ticketPrice?: string | null;
+  readonly ticketAvailability?: TicketAvailability | keyof typeof TicketAvailability | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -34,15 +56,18 @@ type LazyEvent = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly date?: string | null;
-  readonly time?: string | null;
   readonly title?: string | null;
   readonly subTitle?: string | null;
   readonly extraInfo?: string | null;
+  readonly date?: string | null;
+  readonly time?: string | null;
   readonly location?: string | null;
   readonly veneueUrl?: string | null;
   readonly bandUrl?: string | null;
   readonly image?: string | null;
+  readonly otherBands?: (OtherBands | null)[] | null;
+  readonly ticketPrice?: string | null;
+  readonly ticketAvailability?: TicketAvailability | keyof typeof TicketAvailability | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

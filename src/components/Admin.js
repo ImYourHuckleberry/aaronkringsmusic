@@ -151,6 +151,7 @@ const Admin = () => {
           </div>
           {
             events.filter(event => !event._deleted).map((event, index) => (
+              console.log(event),
               <div key={event.id}>
 
                 <EventCard
@@ -164,6 +165,8 @@ const Admin = () => {
                   veneueUrl={event.veneueUrl}
                   image={event.image}
                   key={event.id ? event.id : index}
+                  ticketAvailability={event.ticketAvailability}
+                  ticketPrice={event.ticketPrice}
                 />
                 <button key={"edit_button_" + index} onClick={() => handleEdit(event)}>edit the card above</button>
 

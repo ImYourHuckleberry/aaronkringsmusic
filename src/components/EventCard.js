@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Grid, Paper, ButtonBase, Typography } from "@mui/material";
+import { Button, Card, CardMedia, CardContent, CardActions, Typography } from "@mui/material";
 import { Storage } from "aws-amplify";
 import { styled } from "@mui/material/styles";
 import "./EventCard.css"; // Import the CSS file
@@ -14,6 +14,8 @@ const EventCard = ({
   veneueUrl,
   bandUrl,
   image,
+  ticketPrice,
+  ticketAvailability
 }) => {
   const [imageUrl, setImageUrl] = useState(null);
 
@@ -34,6 +36,26 @@ const EventCard = ({
 
   const openNewTab = (url) => {
     window.open(url, '_blank').focus()
+  }
+
+  const getTicketAvailability = (string) => {
+    console.log(string)
+    switch (string) {
+      case "ON_SALE":
+        return ("On Sale")
+        break;
+      case "COMING_SOON":
+        return ("Coming Soon")
+        break;
+      case "SOLD_OUT":
+        return ("Sold Out")
+        break;
+      case "Free":
+        return ("Free")
+        break;
+      default:
+      // code block
+    }
   }
 
   const convertToStandardTime = (militaryTime) => {
@@ -63,83 +85,43 @@ const EventCard = ({
 
   const standardTime = convertToStandardTime(time);
   const formattedDate = formatDate(date);
-
-
-  const Img = styled('img')({
-    margin: '0',
-    display: 'block',
-    objectFit: 'cover',
-    flexGrow: 1,
-    display: 'flex',
-    alignItems: 'stretch',
-  });
-
+  const formattedTicketAvailability = getTicketAvailability(ticketAvailability)
   return (
+    <Card sx={{ maxWidth: 345 }}>
 
-    <Paper
-      sx={{
-        margin: 'auto',
-        maxWidth: 1400,
-        flexGrow: 1,
-        backgroundColor: (theme) =>
-          theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-      }}
-      elevation={3}
-    >
-
-
-      <Grid container>
-
-
-        <Grid item xs={33} sm container spacing={2} sx={{ p: 2 }} >
-          <Grid item xs container direction="column" className="event-column">
-            <Grid item >
-              <Typography variant="h4">
-                {formattedDate}
-              </Typography>
-              <Typography variant="h5">
-                {standardTime}
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography sx={{ cursor: 'pointer' }} variant="h6">
-                <a href={veneueUrl}>{location}</a>
-              </Typography>
-              <Typography variant="h7">
-                <a href={bandUrl}>More Info</a>
-              </Typography>
-            </Grid>
-          </Grid>
-        </Grid>
-
-        <Img alt="complex" src={imageUrl} className="image" />
-
-
-        <Grid item xs={12} sm container spacing={2} sx={{ p: 2 }} >
-          <Grid item xs container direction="column" spacing={1} className="last-column">
-            <Grid item xs >
-              <Typography className="" gutterBottom variant="h3" component="div">
-                {title}
-              </Typography>
-              <Typography variant="h5" gutterBottom>
-                {subTitle}
-              </Typography>
-              <Typography variant="h7" color="text.secondary">
-                {extraInfo}
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography variant="subtitle1" component="div">
-
-                <Button variant="contained" onClick={() => { openNewTab(veneueUrl) }}>Get Tickets</Button>
-              </Typography>
-            </Grid>
-          </Grid>
-        </Grid>
-
-
-      </Grid>
-    </Paper>
+      <CardContent>
+        {formattedTicketAvailability}
+      </CardContent>
+      <CardContent>
+        <Typography>
+          {formattedDate}
+        </Typography>
+        <Typography>
+          {standardTime}
+        </Typography>
+      </CardContent>
+      <CardMedia
+        component="img"
+        height="140"
+        image={imageUrl}
+        alt="Event Image"
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          {title}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {subTitle}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {extraInfo}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">Share</Button>
+        <Button size="small">Learn More</Button>
+      </CardActions>
+    </Card>
   )
 };
 

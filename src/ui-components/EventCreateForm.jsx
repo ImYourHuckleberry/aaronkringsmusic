@@ -6,7 +6,13 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
+import {
+  Button,
+  Flex,
+  Grid,
+  SelectField,
+  TextField,
+} from "@aws-amplify/ui-react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Event } from "../models";
 import { fetchByPath, validateField } from "./utils";
@@ -23,48 +29,60 @@ export default function EventCreateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    date: "",
-    time: "",
     title: "",
     subTitle: "",
     extraInfo: "",
+    date: "",
+    time: "",
     location: "",
     veneueUrl: "",
     bandUrl: "",
     image: "",
+    ticketPrice: "",
+    ticketAvailability: "",
   };
-  const [date, setDate] = React.useState(initialValues.date);
-  const [time, setTime] = React.useState(initialValues.time);
   const [title, setTitle] = React.useState(initialValues.title);
   const [subTitle, setSubTitle] = React.useState(initialValues.subTitle);
   const [extraInfo, setExtraInfo] = React.useState(initialValues.extraInfo);
+  const [date, setDate] = React.useState(initialValues.date);
+  const [time, setTime] = React.useState(initialValues.time);
   const [location, setLocation] = React.useState(initialValues.location);
   const [veneueUrl, setVeneueUrl] = React.useState(initialValues.veneueUrl);
   const [bandUrl, setBandUrl] = React.useState(initialValues.bandUrl);
   const [image, setImage] = React.useState(initialValues.image);
+  const [ticketPrice, setTicketPrice] = React.useState(
+    initialValues.ticketPrice
+  );
+  const [ticketAvailability, setTicketAvailability] = React.useState(
+    initialValues.ticketAvailability
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    setDate(initialValues.date);
-    setTime(initialValues.time);
     setTitle(initialValues.title);
     setSubTitle(initialValues.subTitle);
     setExtraInfo(initialValues.extraInfo);
+    setDate(initialValues.date);
+    setTime(initialValues.time);
     setLocation(initialValues.location);
     setVeneueUrl(initialValues.veneueUrl);
     setBandUrl(initialValues.bandUrl);
     setImage(initialValues.image);
+    setTicketPrice(initialValues.ticketPrice);
+    setTicketAvailability(initialValues.ticketAvailability);
     setErrors({});
   };
   const validations = {
-    date: [],
-    time: [],
     title: [],
     subTitle: [],
     extraInfo: [],
+    date: [],
+    time: [],
     location: [],
     veneueUrl: [{ type: "URL" }],
     bandUrl: [{ type: "URL" }],
     image: [],
+    ticketPrice: [],
+    ticketAvailability: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -92,15 +110,17 @@ export default function EventCreateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          date,
-          time,
           title,
           subTitle,
           extraInfo,
+          date,
+          time,
           location,
           veneueUrl,
           bandUrl,
           image,
+          ticketPrice,
+          ticketAvailability,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -147,6 +167,108 @@ export default function EventCreateForm(props) {
       {...rest}
     >
       <TextField
+        label="Title"
+        isRequired={false}
+        isReadOnly={false}
+        value={title}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              title: value,
+              subTitle,
+              extraInfo,
+              date,
+              time,
+              location,
+              veneueUrl,
+              bandUrl,
+              image,
+              ticketPrice,
+              ticketAvailability,
+            };
+            const result = onChange(modelFields);
+            value = result?.title ?? value;
+          }
+          if (errors.title?.hasError) {
+            runValidationTasks("title", value);
+          }
+          setTitle(value);
+        }}
+        onBlur={() => runValidationTasks("title", title)}
+        errorMessage={errors.title?.errorMessage}
+        hasError={errors.title?.hasError}
+        {...getOverrideProps(overrides, "title")}
+      ></TextField>
+      <TextField
+        label="Sub title"
+        isRequired={false}
+        isReadOnly={false}
+        value={subTitle}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              title,
+              subTitle: value,
+              extraInfo,
+              date,
+              time,
+              location,
+              veneueUrl,
+              bandUrl,
+              image,
+              ticketPrice,
+              ticketAvailability,
+            };
+            const result = onChange(modelFields);
+            value = result?.subTitle ?? value;
+          }
+          if (errors.subTitle?.hasError) {
+            runValidationTasks("subTitle", value);
+          }
+          setSubTitle(value);
+        }}
+        onBlur={() => runValidationTasks("subTitle", subTitle)}
+        errorMessage={errors.subTitle?.errorMessage}
+        hasError={errors.subTitle?.hasError}
+        {...getOverrideProps(overrides, "subTitle")}
+      ></TextField>
+      <TextField
+        label="Extra info"
+        isRequired={false}
+        isReadOnly={false}
+        value={extraInfo}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              title,
+              subTitle,
+              extraInfo: value,
+              date,
+              time,
+              location,
+              veneueUrl,
+              bandUrl,
+              image,
+              ticketPrice,
+              ticketAvailability,
+            };
+            const result = onChange(modelFields);
+            value = result?.extraInfo ?? value;
+          }
+          if (errors.extraInfo?.hasError) {
+            runValidationTasks("extraInfo", value);
+          }
+          setExtraInfo(value);
+        }}
+        onBlur={() => runValidationTasks("extraInfo", extraInfo)}
+        errorMessage={errors.extraInfo?.errorMessage}
+        hasError={errors.extraInfo?.hasError}
+        {...getOverrideProps(overrides, "extraInfo")}
+      ></TextField>
+      <TextField
         label="Date"
         isRequired={false}
         isReadOnly={false}
@@ -156,15 +278,17 @@ export default function EventCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              date: value,
-              time,
               title,
               subTitle,
               extraInfo,
+              date: value,
+              time,
               location,
               veneueUrl,
               bandUrl,
               image,
+              ticketPrice,
+              ticketAvailability,
             };
             const result = onChange(modelFields);
             value = result?.date ?? value;
@@ -189,15 +313,17 @@ export default function EventCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              date,
-              time: value,
               title,
               subTitle,
               extraInfo,
+              date,
+              time: value,
               location,
               veneueUrl,
               bandUrl,
               image,
+              ticketPrice,
+              ticketAvailability,
             };
             const result = onChange(modelFields);
             value = result?.time ?? value;
@@ -213,102 +339,6 @@ export default function EventCreateForm(props) {
         {...getOverrideProps(overrides, "time")}
       ></TextField>
       <TextField
-        label="Title"
-        isRequired={false}
-        isReadOnly={false}
-        value={title}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              date,
-              time,
-              title: value,
-              subTitle,
-              extraInfo,
-              location,
-              veneueUrl,
-              bandUrl,
-              image,
-            };
-            const result = onChange(modelFields);
-            value = result?.title ?? value;
-          }
-          if (errors.title?.hasError) {
-            runValidationTasks("title", value);
-          }
-          setTitle(value);
-        }}
-        onBlur={() => runValidationTasks("title", title)}
-        errorMessage={errors.title?.errorMessage}
-        hasError={errors.title?.hasError}
-        {...getOverrideProps(overrides, "title")}
-      ></TextField>
-      <TextField
-        label="Sub title"
-        isRequired={false}
-        isReadOnly={false}
-        value={subTitle}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              date,
-              time,
-              title,
-              subTitle: value,
-              extraInfo,
-              location,
-              veneueUrl,
-              bandUrl,
-              image,
-            };
-            const result = onChange(modelFields);
-            value = result?.subTitle ?? value;
-          }
-          if (errors.subTitle?.hasError) {
-            runValidationTasks("subTitle", value);
-          }
-          setSubTitle(value);
-        }}
-        onBlur={() => runValidationTasks("subTitle", subTitle)}
-        errorMessage={errors.subTitle?.errorMessage}
-        hasError={errors.subTitle?.hasError}
-        {...getOverrideProps(overrides, "subTitle")}
-      ></TextField>
-      <TextField
-        label="Extra info"
-        isRequired={false}
-        isReadOnly={false}
-        value={extraInfo}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              date,
-              time,
-              title,
-              subTitle,
-              extraInfo: value,
-              location,
-              veneueUrl,
-              bandUrl,
-              image,
-            };
-            const result = onChange(modelFields);
-            value = result?.extraInfo ?? value;
-          }
-          if (errors.extraInfo?.hasError) {
-            runValidationTasks("extraInfo", value);
-          }
-          setExtraInfo(value);
-        }}
-        onBlur={() => runValidationTasks("extraInfo", extraInfo)}
-        errorMessage={errors.extraInfo?.errorMessage}
-        hasError={errors.extraInfo?.hasError}
-        {...getOverrideProps(overrides, "extraInfo")}
-      ></TextField>
-      <TextField
         label="Location"
         isRequired={false}
         isReadOnly={false}
@@ -317,15 +347,17 @@ export default function EventCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              date,
-              time,
               title,
               subTitle,
               extraInfo,
+              date,
+              time,
               location: value,
               veneueUrl,
               bandUrl,
               image,
+              ticketPrice,
+              ticketAvailability,
             };
             const result = onChange(modelFields);
             value = result?.location ?? value;
@@ -349,15 +381,17 @@ export default function EventCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              date,
-              time,
               title,
               subTitle,
               extraInfo,
+              date,
+              time,
               location,
               veneueUrl: value,
               bandUrl,
               image,
+              ticketPrice,
+              ticketAvailability,
             };
             const result = onChange(modelFields);
             value = result?.veneueUrl ?? value;
@@ -381,15 +415,17 @@ export default function EventCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              date,
-              time,
               title,
               subTitle,
               extraInfo,
+              date,
+              time,
               location,
               veneueUrl,
               bandUrl: value,
               image,
+              ticketPrice,
+              ticketAvailability,
             };
             const result = onChange(modelFields);
             value = result?.bandUrl ?? value;
@@ -413,15 +449,17 @@ export default function EventCreateForm(props) {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              date,
-              time,
               title,
               subTitle,
               extraInfo,
+              date,
+              time,
               location,
               veneueUrl,
               bandUrl,
               image: value,
+              ticketPrice,
+              ticketAvailability,
             };
             const result = onChange(modelFields);
             value = result?.image ?? value;
@@ -436,6 +474,97 @@ export default function EventCreateForm(props) {
         hasError={errors.image?.hasError}
         {...getOverrideProps(overrides, "image")}
       ></TextField>
+      <TextField
+        label="Ticket price"
+        isRequired={false}
+        isReadOnly={false}
+        value={ticketPrice}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              title,
+              subTitle,
+              extraInfo,
+              date,
+              time,
+              location,
+              veneueUrl,
+              bandUrl,
+              image,
+              ticketPrice: value,
+              ticketAvailability,
+            };
+            const result = onChange(modelFields);
+            value = result?.ticketPrice ?? value;
+          }
+          if (errors.ticketPrice?.hasError) {
+            runValidationTasks("ticketPrice", value);
+          }
+          setTicketPrice(value);
+        }}
+        onBlur={() => runValidationTasks("ticketPrice", ticketPrice)}
+        errorMessage={errors.ticketPrice?.errorMessage}
+        hasError={errors.ticketPrice?.hasError}
+        {...getOverrideProps(overrides, "ticketPrice")}
+      ></TextField>
+      <SelectField
+        label="Ticket availability"
+        placeholder="Please select an option"
+        isDisabled={false}
+        value={ticketAvailability}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              title,
+              subTitle,
+              extraInfo,
+              date,
+              time,
+              location,
+              veneueUrl,
+              bandUrl,
+              image,
+              ticketPrice,
+              ticketAvailability: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.ticketAvailability ?? value;
+          }
+          if (errors.ticketAvailability?.hasError) {
+            runValidationTasks("ticketAvailability", value);
+          }
+          setTicketAvailability(value);
+        }}
+        onBlur={() =>
+          runValidationTasks("ticketAvailability", ticketAvailability)
+        }
+        errorMessage={errors.ticketAvailability?.errorMessage}
+        hasError={errors.ticketAvailability?.hasError}
+        {...getOverrideProps(overrides, "ticketAvailability")}
+      >
+        <option
+          children="On sale"
+          value="ON_SALE"
+          {...getOverrideProps(overrides, "ticketAvailabilityoption0")}
+        ></option>
+        <option
+          children="Sold out"
+          value="SOLD_OUT"
+          {...getOverrideProps(overrides, "ticketAvailabilityoption1")}
+        ></option>
+        <option
+          children="Coming soon"
+          value="COMING_SOON"
+          {...getOverrideProps(overrides, "ticketAvailabilityoption2")}
+        ></option>
+        <option
+          children="Free"
+          value="FREE"
+          {...getOverrideProps(overrides, "ticketAvailabilityoption3")}
+        ></option>
+      </SelectField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
