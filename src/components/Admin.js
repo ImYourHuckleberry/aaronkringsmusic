@@ -5,17 +5,16 @@ import { useEffect } from 'react';
 import { listEvents } from '../graphql/queries'
 import EventCreateFormCopy from './EventCreateFormCopy'
 import EventUpdateFormCopy from './EventUpdateFormCopy';
-import { Card, CardContent, styled } from '@mui/material';
+import { Card, CardContent, styled, Snackbar, IconButton } from '@mui/material';
 import './customContactFormStyles.css';
 import { API, graphqlOperation } from 'aws-amplify'
 import '@aws-amplify/ui-react/styles.css';
 import React, { useState } from 'react';
 import awsconfig from '../aws-exports';
 import EventCard from './EventCard';
-import { Button } from 'react-scroll';
 import { deleteEvent } from '../graphql/mutations';
-import { Event } from '../models'
-import { Api } from '@mui/icons-material';
+import CloseIcon from '@mui/icons-material/Close';
+import './Admin.css';
 Amplify.configure(awsconfig)
 Auth.configure(awsconfig)
 
@@ -28,13 +27,44 @@ const StyledCard = styled(Card)(({ theme }) => ({
   height: 'fit-content'
 }));
 
+
 const Admin = () => {
   const [events, setEvents] = useState([])
   const [formKey, setFormKey] = React.useState(0);
   const [isEditing, setIsEditing] = useState(false);
-  const [editEventKey, setEditEventKey] = useState("null")
+  const [editEventKey, setEditEventKey] = useState(null)
+  const [eventAction, setEventAction] = useState(null)
+  const [open, setOpen] = useState(false);
 
-  console.log("admin render")
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+    setEventAction(null)
+  };
+  const action = (
+    <React.Fragment>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
+  const handleScrollToSectionAdmin = (id) => {
+    const section = document.getElementById(id);
+    const yOffset = -80;
+
+    const top = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    window.scrollTo({ top });
+
+  };
+
   useEffect(() => {
     const checkAdminStatus = async () => {
       try {
@@ -45,7 +75,6 @@ const Admin = () => {
         }
       } catch (error) {
         console.log('Error:', error);
-        // Handle error scenario
       }
       fetchEvents()
     };
@@ -73,6 +102,7 @@ const Admin = () => {
     console.log(event)
     setEditEventKey(event.id)
     setIsEditing(true)
+    handleScrollToSectionAdmin('top-of-admin-page')
   }
 
   const deleteEventById = async (event) => {
@@ -88,16 +118,20 @@ const Admin = () => {
     } catch (error) {
       console.error('Error deleting event:', error);
     }
+    setEventAction("Deleted")
+    setOpen(true)
   };
-  const handleEditSubmission = () => {
+  const handleEditSubmission = (eventActionString) => {
     setEditEventKey(null)
     setIsEditing(false)
     fetchEvents()
+    setEventAction(eventActionString)
+    setOpen(true)
   }
   return (
 
-    <>
-      <StyledCard key={formKey}>
+    <div className='admin-container'>
+      <StyledCard key={formKey} id='top-of-admin-page'>
         <CardContent >
           {!isEditing && <h1>Add an Event</h1>}
           {isEditing && <h1>Edit an Event</h1>}
@@ -105,6 +139,8 @@ const Admin = () => {
           <div> {/* Apply the custom styles */}
             {!isEditing && <EventCreateFormCopy
               getFreshForm={getFreshForm}
+              setEventAction={setEventAction}
+              setOpen={setOpen}
             />}
 
 
@@ -129,14 +165,24 @@ const Admin = () => {
                   image={event.image}
                   key={event.id ? event.id : index}
                 />
-                <button key={"edit_button_" + index} onClick={() => handleEdit(event)}>edit</button>
-                <button key={"delete_button_" + index} onClick={() => deleteEventById(event)}>DELETE</button>
+                <button key={"edit_button_" + index} onClick={() => handleEdit(event)}>edit the card above</button>
+
+                <button key={"delete_button_" + index} onClick={() => deleteEventById(event)}>DELETE the card above</button>
+                <br></br><br></br>
               </div>
+
             ))
           }
         </CardContent>
       </StyledCard>
-    </>
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        message={`Event Successfully ${eventAction}`}
+        action={action}
+      />
+    </div>
   )
 
     ;

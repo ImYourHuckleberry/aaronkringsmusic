@@ -14,6 +14,8 @@ const EventCreateFormCopy = (props) => {
         onChange,
         overrides,
         getFreshForm,
+        setOpen,
+        setEventAction,
         ...rest
     } = props;
     const initialValues = {
@@ -152,6 +154,8 @@ const EventCreateFormCopy = (props) => {
                     if (clearOnSuccess) {
                         resetStateValues();
                         getFreshForm();
+                        setEventAction("Created")
+                        setOpen(true)
                     }
                 } catch (err) {
                     if (onError) {

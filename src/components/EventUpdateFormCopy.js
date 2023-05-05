@@ -174,7 +174,7 @@ export default function EventUpdateFormCopy(props) {
             onError(modelFields, err.message);
           }
         }
-        handleEditSubmission()
+        handleEditSubmission("Edited")
       }}
       {...getOverrideProps(overrides, "EventUpdateForm")}
       {...rest}
@@ -466,7 +466,7 @@ export default function EventUpdateFormCopy(props) {
           onClick={(event) => {
             event.preventDefault();
             resetStateValues();
-            handleEditSubmission()
+            handleEditSubmission("Navigated Away From. Oops, didn't mean to edit that one.")
           }}
           isDisabled={!(idProp || eventModelProp)}
           {...getOverrideProps(overrides, "ResetButton")}
