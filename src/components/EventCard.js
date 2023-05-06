@@ -53,7 +53,7 @@ const EventCard = ({
       SOLD_OUT: "Sold Out",
       FREE: "Free"
     };
-  
+
     return ticketAvailability[string] || "";
   };
 
@@ -82,16 +82,16 @@ const EventCard = ({
     return dateObj.toLocaleDateString('en-US', options);
   };
 
-  const getColorClass=(index)=>{
+  const getColorClass = (index) => {
     return index % 2 === 0 ? "ticket-status-even" : "ticket-status-odd"
   }
   const standardTime = convertToStandardTime(time);
   const formattedDate = formatDate(date);
   const formattedTicketAvailability = getTicketAvailability(ticketAvailability)
   const colorClass = getColorClass(index)
-  
+
   return (
-    
+
     <Card className="event-card">
 
       <CardContent className={colorClass}>
@@ -113,14 +113,14 @@ const EventCard = ({
           ${ticketPrice}
         </Typography>
       </CardContent>
-       <CardMedia
+      <CardMedia
         component="img"
         image={imageUrl}
         alt="Event Image"
-        style={{ aspectRatio: 4/2 }}
+        style={{ aspectRatio: 4 / 2 }}
       />
       <CardContent>
-        <Typography gutterBottom variant="h3" component="div" sx={{textDecoration: 'underline'}}>
+        <Typography gutterBottom variant="h3" component="div" sx={{ textDecoration: 'underline' }}>
           {title}
         </Typography>
         <Typography variant="h5" color="text.secondary">
@@ -134,7 +134,8 @@ const EventCard = ({
         <Button size="large" onClick={() => { openNewTab(bandUrl) }}>Learn More</Button>
         <Button size="large" onClick={() => { openNewTab(googleMapsUrl) }}>Map</Button>
         <FacebookShareButton quote={`${title}: live at ${location}`} url="https://www.aaronkrings.com/"><FacebookIcon size={40} round={true} /></FacebookShareButton>
-        <TwitterShareButton url="https://www.aaronkrings.com" title={`${title}: live at ${location}`} caption={subTitle}><TwitterIcon size={40} round={true}/></TwitterShareButton>
+        <TwitterShareButton url="https://www.aaronkrings.com" title={`${title}: live at ${location}`} caption={subTitle}><TwitterIcon size={40} round={true} /></TwitterShareButton>
+
       </CardActions>
     </Card>
   )
