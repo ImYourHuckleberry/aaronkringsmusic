@@ -26,18 +26,11 @@ const Home = () => {
             <div className='title-container'>
                 <Title className="name-title" />
             </div>
-            <div className='card-container'>
-                <StandardCard
-                    title="New Album: "
-                    italics="NOW HEAR THIS!"
-                    mediaSource="https://aaronkringsmusic-storage-5a99e8b203307-staging.s3.amazonaws.com/nowhearthis.jpg"
-                    mediaType="picture"
-                    link='https://jonolejnik.bandcamp.com/album/now-hear-this'
-                    alt="NOW HEAR THIS! Album Cover."
-                    subtitle="Available Now"
-                    callToAction="Buy"
-                    className="home-card"
-                />
+            <div id='events' className='card-container'>
+                    <Events />
+                </div>
+            <div >
+                
                 <StandardCard
                     title="Now Playing in: "
                     italics="The Million Dollar Quartet"
@@ -49,9 +42,17 @@ const Home = () => {
                     callToAction="Get Tickets"
                     className="home-card"
                 />
-                <div id='events'>
-                    <Events />
-                </div>
+                <StandardCard
+                    title="New Album: "
+                    italics="NOW HEAR THIS!"
+                    mediaSource="https://aaronkringsmusic-storage-5a99e8b203307-staging.s3.amazonaws.com/nowhearthis.jpg"
+                    mediaType="picture"
+                    link='https://jonolejnik.bandcamp.com/album/now-hear-this'
+                    alt="NOW HEAR THIS! Album Cover."
+                    subtitle="Available Now"
+                    callToAction="Buy"
+                    className="home-card"
+                />
                 <div id="listen"></div>
                 <Media />
                 <div id="bio"></div>

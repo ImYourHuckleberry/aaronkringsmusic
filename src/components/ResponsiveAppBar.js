@@ -124,7 +124,7 @@ function ResponsiveAppBar() {
               cursor: 'pointer',
             }}
           >
-            Aaron Krings
+            Aaron
           </Typography>
           {/* this is super stupid but the only way i could get this thing to center */}
           <Typography
