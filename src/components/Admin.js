@@ -150,7 +150,6 @@ const Admin = () => {
           </div>
           {
             events.filter(event => !event._deleted).map((event, index) => (
-              console.log(event),
               <div key={event.id} className="event-container">
                 <EventCard
                   index={index}

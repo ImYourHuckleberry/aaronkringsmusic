@@ -51,7 +51,7 @@ const EventCard = ({
       ON_SALE: "On Sale",
       COMING_SOON: "Coming Soon",
       SOLD_OUT: "Sold Out",
-      Free: "Free"
+      FREE: "Free"
     };
   
     return ticketAvailability[string] || "";

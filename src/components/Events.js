@@ -3,10 +3,20 @@ import './Bio.css';
 import { API, graphqlOperation } from 'aws-amplify';
 import { listEvents } from '../graphql/queries'
 import EventCard from './EventCard';
+import { CardContent, styled, Card } from '@mui/material';
 
+
+  
 const Events = () => {
     const [events, setEvents] = useState([])
-    
+    const StyledCard = styled(Card)(({ theme }) => ({
+    width: '80%',
+    maxWidth: '1000px',
+    padding: '2rem',
+    marginBottom: '2rem',
+    backgroundColor: '#fff',
+    height: 'fit-content'
+  }));
   async function fetchEvents() {
     try {
       const eventData = await API.graphql(graphqlOperation(listEvents));
@@ -23,8 +33,10 @@ const Events = () => {
       }, []);
     
     return (
-        <div className="bio-container" id="home">
-            <div className='card-container'>
+        <div className id="home">
+            <div className='admin-container'>
+            <StyledCard>
+        <CardContent >
             {
             events.filter(event => !event._deleted).map((event, index) => (
               console.log(event),
@@ -48,10 +60,10 @@ const Events = () => {
               </div>
             ))
           }
+          </CardContent>
+          </StyledCard>
             </div>
-            <div className="fab-container">
-                {/* need to make this happen here like it does on home */}
-            </div>
+            
         </div>
     )
 }
