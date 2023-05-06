@@ -25,7 +25,6 @@ const EventCard = ({
   index
 }) => {
   const [imageUrl, setImageUrl] = useState(null);
-
   useEffect(() => {
     const getImage = async (image) => {
       try {

@@ -1,12 +1,20 @@
 import React from 'react';
-import { Card, CardContent } from '@mui/material';
+import { Card, CardContent, styled, Typography } from '@mui/material';
 import './Bio.css';
 
 const Media = () => {
+  const StyledCard = styled(Card)(({ theme }) => ({
+    paddingTop: '2rem',
+    width: '100%',
+    maxWidth: '800px',
+    marginBottom: '2rem',
+    backgroundColor: '#fff',
+    height: 'fit-content',
+  }));
   return (
-    <Card className="home-card home-card-second">
+    <StyledCard className="home-card home-card-second">
+        <Typography variant='h3'>Media</Typography>
       <CardContent>
-        <h2>Media</h2>
         <div className="youtube-video">
           <iframe
             width="560"
@@ -20,7 +28,7 @@ const Media = () => {
           Glen Miller Orchestra vs Tommy Dorsy Orchestra: Battle of the Big Bands
         </p>
       </CardContent>
-    </Card>
+    </StyledCard>
   )
 }
 export default Media;

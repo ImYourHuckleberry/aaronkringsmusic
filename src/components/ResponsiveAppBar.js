@@ -10,9 +10,8 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import GraphicIcon from '@mui/icons-material/GraphicEq';
-import { useNavigate } from 'react-router';
 
-const pages = ['Home', 'Events'];
+const pages = ['Home', 'Bio', 'Listen', 'Contact', 'Events'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -25,11 +24,25 @@ function ResponsiveAppBar() {
     setAnchorElNav(null);
   };
 
-  const navigate = useNavigate();
+  const handleScrollToSection = (id) => {
+    const section = document.getElementById(id);
+    const yOffset = -100;
 
-  const routeToPage=(page)=>{
-    navigate(`/${page}`)
-  }
+    const top = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    window.scrollTo({ top, behavior: 'smooth' });
+
+    handleCloseNavMenu();
+  };
+
+  const handleScrollToSectionMobile = (id) => {
+    const section = document.getElementById(id);
+    const yOffset = -80;
+
+    const top = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    window.scrollTo({ top });
+
+    handleCloseNavMenu();
+  };
 
 
   return (
@@ -51,7 +64,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
               cursor: 'pointer',
             }}
-            onClick={() => routeToPage('/home')}
+            onClick={() => handleScrollToSection('home')}
           >
             Aaron Krings
           </Typography>
@@ -85,7 +98,7 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={() => routeToPage(page)}>
+                <MenuItem key={page} onClick={() => handleScrollToSectionMobile(page.toLowerCase())}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -94,7 +107,7 @@ function ResponsiveAppBar() {
 
           <GraphicIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
-            onClick={() => routeToPage("/home")}
+            onClick={() => handleScrollToSectionMobile('home')}
             variant="h5"
             noWrap
             component="a"
@@ -125,7 +138,7 @@ function ResponsiveAppBar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={() => routeToPage(page)}
+                onClick={() => handleScrollToSection(page.toLowerCase())}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page}

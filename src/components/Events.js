@@ -4,7 +4,7 @@ import './Events.css'
 import { API, graphqlOperation } from 'aws-amplify';
 import { listEvents } from '../graphql/queries'
 import EventCard from './EventCard';
-import { CardContent, styled, Card } from '@mui/material';
+import { CardContent, styled, Card, Typography } from '@mui/material';
 
 
   
@@ -37,10 +37,10 @@ const Events = () => {
         <div id="home" className="events-page-container">
             <div className='admin-container'>
             <StyledCard>
+              <Typography style={{paddingLeft:'2rem'}} variant='h3'>Events</Typography>
         <CardContent >
             {
             events.filter(event => !event._deleted).map((event, index) => (
-              console.log(event),
               <div key={event.id} className="event-container">
                 <EventCard
                   index={index}
