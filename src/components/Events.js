@@ -10,9 +10,9 @@ import { CardContent, styled, Card } from '@mui/material';
 const Events = () => {
     const [events, setEvents] = useState([])
     const StyledCard = styled(Card)(({ theme }) => ({
-    width: '80%',
+    width: '100%',
     maxWidth: '1000px',
-    padding: '2rem',
+    padding: '1rem',
     marginBottom: '2rem',
     backgroundColor: '#fff',
     height: 'fit-content'
