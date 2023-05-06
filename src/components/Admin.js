@@ -1,13 +1,12 @@
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
-import { Amplify, Auth, DataStore } from 'aws-amplify';
+import { Amplify, Auth, API, graphqlOperation } from 'aws-amplify';
 import { useEffect } from 'react';
 import { listEvents } from '../graphql/queries'
 import EventCreateFormCopy from './EventCreateFormCopy'
 import EventUpdateFormCopy from './EventUpdateFormCopy';
 import { Card, CardContent, styled, Snackbar, IconButton } from '@mui/material';
 import './customContactFormStyles.css';
-import { API, graphqlOperation } from 'aws-amplify'
 import '@aws-amplify/ui-react/styles.css';
 import React, { useState } from 'react';
 import awsconfig from '../aws-exports';
@@ -136,7 +135,7 @@ const Admin = () => {
           {!isEditing && <h1>Add an Event</h1>}
           {isEditing && <h1>Edit an Event</h1>}
 
-          <div> {/* Apply the custom styles */}
+          <div className='event-form'> {/* Apply the custom styles */}
             {!isEditing && <EventCreateFormCopy
               getFreshForm={getFreshForm}
               setEventAction={setEventAction}
@@ -152,7 +151,7 @@ const Admin = () => {
           {
             events.filter(event => !event._deleted).map((event, index) => (
               console.log(event),
-              <div key={event.id} className="admin-container">
+              <div key={event.id} className="event-container">
                 <EventCard
                   index={index}
                   time={event.time}
