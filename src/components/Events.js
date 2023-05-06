@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './Bio.css';
+import './Events.css'
 import { API, graphqlOperation } from 'aws-amplify';
 import { listEvents } from '../graphql/queries'
 import EventCard from './EventCard';
@@ -10,12 +11,12 @@ import { CardContent, styled, Card } from '@mui/material';
 const Events = () => {
     const [events, setEvents] = useState([])
     const StyledCard = styled(Card)(({ theme }) => ({
+    paddingTop: '2rem',
     width: '100%',
     maxWidth: '1000px',
-    padding: '1rem',
     marginBottom: '2rem',
     backgroundColor: '#fff',
-    height: 'fit-content'
+    height: 'fit-content',
   }));
   async function fetchEvents() {
     try {
@@ -33,7 +34,7 @@ const Events = () => {
       }, []);
     
     return (
-        <div className id="home">
+        <div id="home" className="events-page-container">
             <div className='admin-container'>
             <StyledCard>
         <CardContent >
