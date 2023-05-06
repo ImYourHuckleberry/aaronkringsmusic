@@ -65,6 +65,9 @@ export default function EventUpdateFormCopy(props) {
     setBandUrl(cleanValues.bandUrl);
     setImage(cleanValues.image);
     setImageFile(cleanValues.imageFile)
+    setTicketAvailability(cleanValues.ticketAvailability)
+    setTicketPrice(cleanValues.ticketPrice)
+    setGoogleMapsUrl(cleanValues.googleMapsUrl)
     setErrors({});
   };
   const [eventRecord, setEventRecord] = React.useState(eventModelProp);
@@ -91,8 +94,8 @@ export default function EventUpdateFormCopy(props) {
     image: [],
     imageFile: [],
     ticketPrice: [],
-    ticketAvailability: [{ type: "URL" }],
-    googleMapsUrl:[]
+    ticketAvailability: [],
+    googleMapsUrl:[{ type: "URL" }]
   };
   const runValidationTasks = async (
     fieldName,

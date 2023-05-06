@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import ResponsiveAppBar from './components/ResponsiveAppBar'
 import Admin from "./components/Admin"
+import Events from "./components/Events"
 import { Amplify, Auth } from 'aws-amplify';
 import awsconfig from './aws-exports';
 Amplify.configure(awsconfig)
@@ -18,12 +19,12 @@ function App() {
           </video>
         </div>
         <ResponsiveAppBar />
-        <Router>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            {/* <Route path='/events' element = {<Events/>}/> */}
             <Route path="/admin" element={<Admin />} />
           </Routes>
-        </Router>
       </header>
     </div>
   );

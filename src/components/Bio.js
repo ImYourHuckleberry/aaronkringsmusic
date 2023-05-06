@@ -1,13 +1,22 @@
 import React from 'react';
-import { Card, CardContent } from '@mui/material';
+import { Card, CardContent, styled, Typography } from '@mui/material';
 import './Bio.css';
 
 const Bio = () => {
+  const StyledCard = styled(Card)(({ theme }) => ({
+    paddingTop: '2rem',
+    width: '100%',
+    maxWidth: '800px',
+    marginBottom: '2rem',
+    backgroundColor: '#fff',
+    height: 'fit-content',
+  }));
   return (
-    <Card className="home-card">
+    <StyledCard className="home-card">
+      <Typography variant='h3'>Bio</Typography>
+      <Typography variant='h5'>About Aaron Krings</Typography>
       <CardContent>
-        <h1>Bio</h1>
-        <h3>About Aaron Krings</h3>
+        
 <p>Aaron Krings is an upright and electric bassist living and performing in the greater Chicagoland area. Originally from St. Louis, MO, he has been passionate about music since a young age.</p>
 
 <h3>Education</h3>
@@ -59,7 +68,7 @@ const Bio = () => {
 <li>Wick Theatre, Boca Raton, Florida</li>
 </ul>
       </CardContent>
-    </Card>
+    </StyledCard>
   );
 };
 

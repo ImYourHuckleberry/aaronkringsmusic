@@ -9,7 +9,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 
 const StyledCard = styled(Card)(({ theme }) => ({
-  width: '80%',
+  minWidth: '100%',
   maxWidth: '1000px',
   padding: '2rem',
   marginBottom: '2rem',
