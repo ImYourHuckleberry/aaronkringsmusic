@@ -9,10 +9,17 @@ import EmailIcon from '@mui/icons-material/Email';
 import Fab from '@mui/material/Fab';
 import Title from './Title'
 import Events from './Events';
-import {Card, Typography} from '@mui/material'
+import { Card, styled } from '@mui/material'
 
 const Home = () => {
-
+    const StyledCard = styled(Card)(({ theme }) => ({
+        paddingTop: '2rem',
+        width: '100%',
+        maxWidth: '1000px',
+        marginBottom: '2rem',
+        backgroundColor: '#fff',
+        height: 'fit-content',
+    }));
     const handleScrollToContact = () => {
         const section = document.getElementById('contact');
         const yOffset = -80;
@@ -27,42 +34,10 @@ const Home = () => {
                 <Title className="name-title" />
             </div>
             <div id='events' className='card-container'>
-                    <Events />
-                </div>
-            <div >
-                
-                <StandardCard
-                    title="Now Playing in: "
-                    italics="The Million Dollar Quartet"
-                    mediaSource="https://aaronkringsmusic-storage-5a99e8b203307-staging.s3.amazonaws.com/MDQ.png"
-                    mediaType="picture"
-                    link='https://thewicktheatre.thundertix.com/events/197583'
-                    alt="Million Dollar Quartet promotional picture"
-                    subtitle="April 20 - May 14"
-                    callToAction="Get Tickets"
-                    className="home-card"
-                />
-                <StandardCard
-                    title="New Album: "
-                    italics="NOW HEAR THIS!"
-                    mediaSource="https://aaronkringsmusic-storage-5a99e8b203307-staging.s3.amazonaws.com/nowhearthis.jpg"
-                    mediaType="picture"
-                    link='https://jonolejnik.bandcamp.com/album/now-hear-this'
-                    alt="NOW HEAR THIS! Album Cover."
-                    subtitle="Available Now"
-                    callToAction="Buy"
-                    className="home-card"
-                />
-                <div id="listen"></div>
-                <Media />
-                <div id="bio"></div>
-                
-                <Bio />
-                <div id="contact"></div>
-                <StyledContactFormCard id="contact" className="home-card"><ContactCreateForm /></StyledContactFormCard>
-                <div>
-                </div>
+                <Events />
+               
             </div>
+
             <div className="fab-container">
                 <Fab color="primary" aria-label="add" size="small">
                     <EmailIcon onClick={() => handleScrollToContact()} />
