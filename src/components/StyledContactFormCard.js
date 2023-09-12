@@ -9,12 +9,12 @@ import CloseIcon from '@mui/icons-material/Close';
 
 
 const StyledCard = styled(Card)(({ theme }) => ({
-  minWidth: '100%',
+  paddingTop: '2rem',
+  width: '100%',
   maxWidth: '1000px',
-  padding: '2rem',
   marginBottom: '2rem',
   backgroundColor: '#fff',
-  height: 'fit-content'
+  height: 'fit-content',
 }));
 
 const StyledContactFormCard = () => {

@@ -6,7 +6,7 @@ const StandardCard = (props) => {
     const { title, italics, mediaSource, mediaType, link, alt, subtitle, callToAction, className } = props;
     const handleButtonAlbum = () => {
         window.open(
-            link,
+            'https://jonolejnik.bandcamp.com/album/now-hear-this',
             '_blank' // <- This is what makes it open in a new window.
         );
     }
