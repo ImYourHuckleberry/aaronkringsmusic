@@ -21,7 +21,7 @@ const Events = () => {
   }));
   const handleButtonAlbum = () => {
     window.open(
-      'https://thewicktheatre.thundertix.com/events/197583',
+      'https://jonolejnik.bandcamp.com/album/now-hear-this',
       '_blank' // <- This is what makes it open in a new window.
     );
   }
@@ -70,7 +70,7 @@ const Events = () => {
             }
           </CardContent>
         </StyledCard>
-
+        <br></br>
         <StyledCard id="current-gig">
           <CardContent >
             <Card className="event-card">
@@ -110,9 +110,9 @@ const Events = () => {
         <br></br>
         <StyledCard className="home-card" id="bio">
           <CardContent>
-          <Typography variant='h3'>Bio</Typography>
-          <Typography variant='h5'>About Aaron Krings</Typography>
-          
+            <Typography variant='h3'>Bio</Typography>
+            <Typography variant='h5'>About Aaron Krings</Typography>
+
 
             <p>Aaron Krings is an upright and electric bassist living and performing in the greater Chicagoland area. Originally from St. Louis, MO, he has been passionate about music since a young age.</p>
 
@@ -168,7 +168,7 @@ const Events = () => {
         </StyledCard>
         <br></br>
         <div id="contact"></div>
-        <StyledContactFormCard  className="home-card"><ContactCreateForm /></StyledContactFormCard>
+        <StyledContactFormCard className="home-card"><ContactCreateForm /></StyledContactFormCard>
       </div>
 
     </div>
