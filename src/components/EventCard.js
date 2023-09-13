@@ -77,7 +77,7 @@ const EventCard = ({
       day: 'numeric',
       weekday: 'long'
     };
-    const dateObj = new Date(dateString);
+    const dateObj = new Date(`${dateString}T00:00:00`);
     return dateObj.toLocaleDateString('en-US', options);
   };
 
